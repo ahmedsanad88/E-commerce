@@ -1,0 +1,63 @@
+// import { useRouter } from 'next/router';
+
+import { Meta } from '@/layouts/Meta';
+import cream from '@/public/assets/images/cream.png';
+import girl from '@/public/assets/images/girl.png';
+import banner from '@/public/assets/images/makeup-banner.png';
+import { Main } from '@/templates/Main';
+import Banner from '@/ui/components/Banner';
+import SubBanner from '@/ui/components/SubBanner';
+import Brands from '@/ui/sections/Brands';
+import CategoryCard from '@/ui/sections/CategoryCard';
+import Collections from '@/ui/sections/Collections';
+import NewArrivals from '@/ui/sections/NewArrivals';
+
+const Index = () => {
+  // const router = useRouter();
+
+  return (
+    <Main
+      meta={
+        <Meta
+          title="Buy/2 E-commerce"
+          description="With Buy/2, You will find the best deals on your favorite products."
+        />
+      }
+    >
+      <Banner />
+      <NewArrivals />
+      <Collections />
+      <Brands />
+      <div className="flex w-full flex-col gap-10">
+        <SubBanner
+          image={banner}
+          isImageRight={true}
+          head1="Makeup Accessories"
+          head2="from Top Brands"
+          text="lifestyle"
+          direction="left-7"
+          color="text-[#97451F]"
+          isThinHeading={false}
+        />
+        <div className="flex flex-col items-center justify-between gap-10 lg:flex-row">
+          <CategoryCard
+            image={cream}
+            head1="Skincare"
+            head2="Essentials"
+            btnBgColor="bg-white"
+            btnColor="text-[#A53F64]"
+          />
+          <CategoryCard
+            image={girl}
+            head1="Facepacks"
+            head2="& Peels"
+            btnBgColor="bg-gray-400"
+            btnColor="text-[#1B4B66]"
+          />
+        </div>
+      </div>
+    </Main>
+  );
+};
+
+export default Index;
