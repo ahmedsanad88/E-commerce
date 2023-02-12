@@ -10,18 +10,27 @@ const FilterCard = ({ title, data }: IFilterCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="w-full border-b-2 border-gray-100 py-4">
+    <div
+      className="w-full cursor-pointer border-b-2 border-gray-100 py-4"
+      onClick={() => setIsOpen((prev) => !prev)}
+    >
       <div className="flex w-full items-center justify-between">
         <h3 className="font-medium text-black">{title}</h3>
         {isOpen ? (
           <HiMinus
             className="cursor-pointer text-2xl text-black"
-            onClick={() => setIsOpen(false)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(false);
+            }}
           />
         ) : (
           <HiPlus
             className="cursor-pointer text-2xl text-black"
-            onClick={() => setIsOpen(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(true);
+            }}
           />
         )}
       </div>

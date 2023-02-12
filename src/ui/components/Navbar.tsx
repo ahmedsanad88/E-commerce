@@ -4,8 +4,8 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaArrowCircleDown } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
-import { GrFavorite } from 'react-icons/gr';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { RiUserLine } from 'react-icons/ri';
 
 import logo from '@/public/assets/images/Buy2.gif';
@@ -55,7 +55,7 @@ const Navbar = () => {
       </form>
       <div className="flex gap-5">
         <div className="relative cursor-pointer">
-          <GrFavorite className="h-6 w-6" />
+          <MdOutlineFavoriteBorder className="h-6 w-6" />
           <div className="absolute top-0 -right-1 h-3 w-3 animate-ping rounded-full bg-[#FF8C4B]"></div>
           <div className="absolute top-0 -right-1 h-3 w-3 rounded-full bg-[#FF8C4B]"></div>
         </div>

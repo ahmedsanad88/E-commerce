@@ -27,5 +27,29 @@ a:hover {
 }
 
 .swiper-slide {
-  @apply !flex !justify-center !items-center
+  @apply !flex !justify-center !items-center bg-cover bg-center
+}
+
+.mySwiper2 .swiper-slide img {
+  @apply w-[600px] h-[600px] object-cover rounded-lg
+}
+
+.mySwiper3 {
+  @apply !h-[100px] w-full grid place-items-center
+}
+
+.mySwiper3 .swiper-wrapper {
+  @apply flex justify-center
+}
+
+.mySwiper3 .swiper-slide {
+  @apply opacity-30 !w-fit cursor-pointer
+}
+
+.mySwiper3 .swiper-slide-thumb-active {
+  @apply opacity-100
+}
+
+.mySwiper3 .swiper-slide img {
+  @apply h-[75px] w-[75px] aspect-square rounded
 }

@@ -42,6 +42,9 @@ module.exports = {
       transitionProperty: {
         height: 'height',
       },
+      gridTemplateColumns: {
+        products: 'repeat(auto-fit, minmax(290px, 1fr))',
+      },
     },
   },
   plugins: [],

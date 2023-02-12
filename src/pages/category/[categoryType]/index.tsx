@@ -5,6 +5,7 @@ import { Meta } from '@/layouts/Meta';
 import category1 from '@/public/assets/images/category1.png';
 import { Main } from '@/templates/Main';
 import SubBanner from '@/ui/components/SubBanner';
+import FilterOptions from '@/ui/sections/category-page/FilterOptions';
 import ProductsList from '@/ui/sections/category-page/ProductsList';
 
 const Categories = () => {
@@ -37,8 +38,10 @@ const Categories = () => {
       <h2 className="text-2xl font-bold text-[#1B4B66] lg:text-5xl">
         Handbags
       </h2>
-      {/* <FilterOptions /> */}
-      <ProductsList />
+      <div className="flex flex-col gap-8 md:flex-row">
+        <FilterOptions />
+        <ProductsList />
+      </div>
     </Main>
   );
 };

@@ -10,7 +10,7 @@ const BrandCard = ({ image, alt }: ICollectionCardProps) => {
         <Image
           src={image}
           alt={alt}
-          className="w-[110px]"
+          className="w-auto"
           width={110}
           height={70}
         />

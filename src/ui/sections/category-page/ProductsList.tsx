@@ -3,12 +3,24 @@ import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { FaThList } from 'react-icons/fa';
 
 import Pagination from '@/ui/components/Pagination';
+import type { IProductCardProps } from '@/ui/components/ProductCard';
+import ProductCard from '@/ui/components/ProductCard';
+
+const product1: IProductCardProps = {
+  title: 'Grande',
+  category: 'Blossom Pouch',
+  price: 39.49,
+  image:
+    'https://cdnd.lystit.com/photos/99ad-2014/03/25/fendi-black-2jours-grande-shopping-bag-product-1-18679366-1-477799868-normal.jpeg',
+  rating: 4.3,
+  discount: 20,
+};
 
 const ProductsList = () => {
   const [isGridList, setIsGridList] = useState(true);
 
   return (
-    <div className="w-full">
+    <div className="flex w-full flex-col gap-6">
       <div className="flex flex-col items-center justify-between gap-2 font-medium lg:flex-row">
         <div className="flex items-center gap-2">
           <BsGrid3X3GapFill
@@ -56,7 +68,13 @@ const ProductsList = () => {
           </select>
         </div>
       </div>
-      <div></div>
+      {/* grid grid-cols-products gap-x-8 gap-y-16 */}
+      {/* flex flex-wrap items-start justify-between gap-x-8 gap-y-16 */}
+      <div className="grid grid-cols-products justify-items-center gap-x-8 gap-y-16">
+        {[...new Array(10)].map((_, i) => (
+          <ProductCard {...product1} key={i} />
+        ))}
+      </div>
 
       <Pagination data={[...new Array(5)]} />
     </div>
