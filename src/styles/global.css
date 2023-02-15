@@ -7,7 +7,7 @@ a {
 }
 
 a:hover {
-  @apply border-b-2 border-blue-700;
+  @apply text-blue-900;
 }
 
 .under-line {
@@ -31,7 +31,7 @@ a:hover {
 }
 
 .mySwiper2 .swiper-slide img {
-  @apply w-[600px] h-[600px] object-cover rounded-lg
+  @apply w-[600px] aspect-square object-cover rounded-lg
 }
 
 .mySwiper3 {
@@ -51,5 +51,5 @@ a:hover {
 }
 
 .mySwiper3 .swiper-slide img {
-  @apply h-[75px] w-[75px] aspect-square rounded
+  @apply h-[50px] w-[50px] sm:h-[75px] sm:w-[75px] aspect-square rounded
 }

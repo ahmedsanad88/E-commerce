@@ -3,6 +3,7 @@ import React from 'react';
 interface IPriceDiscountProps {
   price: number;
   discount: number;
+  display?: string;
   mainTextSize?: string;
   SubTextSize?: string;
 }
@@ -10,11 +11,12 @@ interface IPriceDiscountProps {
 const PriceDiscount = ({
   price,
   discount,
+  display,
   mainTextSize = 'text-base',
   SubTextSize = 'text-sm',
 }: IPriceDiscountProps) => {
   return (
-    <div className="flex items-center gap-2">
+    <div className={`flex items-center gap-2 ${display}`}>
       <p className={`font-semibold ${mainTextSize}`}>{`$ ${price.toFixed(
         3
       )}`}</p>

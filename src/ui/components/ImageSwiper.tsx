@@ -12,7 +12,7 @@ export default function ImageSwiper() {
   const [thumbsSwiper, setThumbsSwiper] = useState<Swiper | null>(null);
 
   return (
-    <div className="h-full w-[600px]">
+    <div className="h-full w-full xl:w-[600px]">
       <SWMain
         spaceBetween={10}
         thumbs={{
@@ -21,6 +21,15 @@ export default function ImageSwiper() {
         modules={[FreeMode, Thumbs]}
         className="mySwiper2"
       >
+        <SwiperSlide>
+          <Image src={cat1} alt="product" priority placeholder="blur" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={cat2} alt="product" loading="lazy" placeholder="blur" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={cat3} alt="product" loading="lazy" placeholder="blur" />
+        </SwiperSlide>
         <SwiperSlide>
           <Image src={cat1} alt="product" priority placeholder="blur" />
         </SwiperSlide>
@@ -41,6 +50,15 @@ export default function ImageSwiper() {
         modules={[FreeMode, Thumbs]}
         className="mySwiper3"
       >
+        <SwiperSlide>
+          <Image src={cat1} alt="product" priority placeholder="blur" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={cat2} alt="product" priority placeholder="blur" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={cat3} alt="product" priority placeholder="blur" />
+        </SwiperSlide>
         <SwiperSlide>
           <Image src={cat1} alt="product" priority placeholder="blur" />
         </SwiperSlide>

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowCircleDown } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
@@ -9,6 +9,11 @@ import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { RiUserLine } from 'react-icons/ri';
 
 import logo from '@/public/assets/images/Buy2.gif';
+import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
+import type { RootState } from '@/redux/store';
+import { useSelector } from '@/redux/store';
+
+import Modal from './Modal';
 
 const HeadTags: string[] = [
   'Handbags',
@@ -19,7 +24,23 @@ const HeadTags: string[] = [
 ];
 
 const Navbar = () => {
+  const { data }: { data: ICartSliceInitialState[] } = useSelector(
+    (state: RootState) => state.cart
+  );
   const [showCategories, setShowCategories] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    if (data) {
+      // Need to be adjusted with different products
+      if (data.length === 1) {
+        data.map((item) => setCartCount(item.count));
+      } else {
+        data.map((item) => setCartCount((prev) => prev + item.count));
+      }
+    }
+  }, [data]);
 
   return (
     <header className="relative flex h-20 w-full items-center justify-between gap-6 bg-white px-5 xl:justify-start">
@@ -61,10 +82,18 @@ const Navbar = () => {
         </div>
         <RiUserLine className="h-6 w-6 cursor-pointer" />
         <div className="relative cursor-pointer">
-          <HiOutlineShoppingBag className="h-6 w-6" />
-          <div className="absolute top-1 right-0 h-3 w-3 animate-ping rounded-full bg-[#4b9fff]"></div>
-          <div className="absolute top-1 right-0 flex h-3 w-3 items-center justify-center rounded-full bg-[#4b9fff]">
-            <p className="text-[0.5rem] text-white">1</p>
+          <HiOutlineShoppingBag
+            className="h-6 w-6"
+            onClick={() => setShowModal(true)}
+          />
+          <div className="pointer-events-none absolute top-1 right-0 h-3 w-3 animate-ping rounded-full bg-[#4b9fff]"></div>
+          <div className="pointer-events-none absolute top-1 right-0 flex h-3 w-3 items-center justify-center rounded-full bg-[#4b9fff]">
+            <p className="text-[0.5rem] text-white">
+              {/* {data
+                ? data.reduce((acc, current) => {})
+                : '0'} */}
+              {cartCount}
+            </p>
           </div>
         </div>
       </div>
@@ -99,6 +128,9 @@ const Navbar = () => {
           ))}
         </ul>
       </nav>
+      <Modal shown={showModal} close={setShowModal} position="right-2 top-20">
+        <h1>Hello</h1>
+      </Modal>
     </header>
   );
 };
