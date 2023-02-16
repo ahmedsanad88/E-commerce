@@ -13,6 +13,7 @@ import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
 import type { RootState } from '@/redux/store';
 import { useSelector } from '@/redux/store';
 
+import ModalProducts from '../sections/cart/ModalProducts';
 import Modal from './Modal';
 
 const HeadTags: string[] = [
@@ -33,9 +34,11 @@ const Navbar = () => {
 
   useEffect(() => {
     if (data) {
-      // Need to be adjusted with different products
+      // might Need to be adjusted with different products
       if (data.length === 1) {
         data.map((item) => setCartCount(item.count));
+      } else if (data.length === 0) {
+        setCartCount(0);
       } else {
         data.map((item) => setCartCount((prev) => prev + item.count));
       }
@@ -65,7 +68,7 @@ const Navbar = () => {
         <input
           type="search"
           placeholder="Search for products or brands"
-          className="h-full w-full bg-transparent p-2 pl-10"
+          className="h-full w-full bg-transparent p-2 pl-10 focus:outline-[#FF8C4B]"
         />
         <button
           type="submit"
@@ -128,8 +131,13 @@ const Navbar = () => {
           ))}
         </ul>
       </nav>
-      <Modal shown={showModal} close={setShowModal} position="right-2 top-20">
-        <h1>Hello</h1>
+      {/* Modal for cart */}
+      <Modal
+        shown={showModal}
+        close={setShowModal}
+        position="right-2 top-24 sm:top-20"
+      >
+        <ModalProducts />
       </Modal>
     </header>
   );

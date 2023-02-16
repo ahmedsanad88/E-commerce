@@ -1,10 +1,10 @@
+import type { StaticImageData } from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
 import { MdAddShoppingCart, MdOutlineFavoriteBorder } from 'react-icons/md';
 
-import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
-import type { RootState } from '@/redux/store';
-import { useSelector } from '@/redux/store';
+import { addToCart } from '@/redux/slices/cartSlice';
+import { useDispatch } from '@/redux/store';
 import PriceDiscount from '@/ui/components/PriceDiscount';
 import RatingStar from '@/ui/components/RatingStar';
 
@@ -16,7 +16,7 @@ interface IProductDetailsProps {
   stars: number;
   price: number;
   discount: number;
-  addItem: () => void;
+  image: string | StaticImageData;
 }
 
 const ProductDetails = ({
@@ -25,11 +25,12 @@ const ProductDetails = ({
   stars,
   price,
   discount,
-  addItem,
+  image,
 }: IProductDetailsProps) => {
-  const { data }: { data: ICartSliceInitialState[] } = useSelector(
-    (state: RootState) => state.cart
-  );
+  // const { data }: { data: ICartSliceInitialState[] } = useSelector(
+  //   (state: RootState) => state.cart
+  // );
+  const dispatch = useDispatch();
   const [numOfUnits, setNumOfUnits] = useState(1);
   const [selectedCoupon, setSelectedCoupon] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -43,16 +44,32 @@ const ProductDetails = ({
     inputRef.current.value = selectedCoupon;
   }, [selectedCoupon]);
 
-  useEffect(() => {
-    if (data) {
-      // eslint-disable-next-line array-callback-return
-      data.map((item) => {
-        if (item.id === title) {
-          setNumOfUnits(item.count);
-        }
-      });
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data.length > 0) {
+  //     console.log('Here product');
+  //     // eslint-disable-next-line array-callback-return
+  //     data.map((item) => {
+  //       if (item.id === title) {
+  //         setNumOfUnits(item.count);
+  //       }
+  //     });
+  //   } else {
+  //     setNumOfUnits(1);
+  //   }
+  // }, [data]);
+
+  const addItem = () => {
+    dispatch(
+      addToCart({
+        id: title,
+        title,
+        subTitle,
+        price,
+        image,
+        count: numOfUnits,
+      })
+    );
+  };
 
   return (
     <div className="flex w-full flex-col gap-4">
@@ -73,20 +90,23 @@ const ProductDetails = ({
         <p className="font-semibold">Quantity:</p>
         <div className="flex items-center gap-2 rounded border-2 border-[#1B4B66] p-2 text-[#1B4B66]">
           <HiMinus
-            onClick={() => setNumOfUnits((prev) => prev - 1)}
+            onClick={() => setNumOfUnits((prev) => (prev <= 1 ? 1 : prev - 1))}
             className="cursor-pointer"
           />
           <p>{numOfUnits}</p>
           <HiPlus
-            onClick={() => setNumOfUnits((prev) => prev + 1)}
+            onClick={() =>
+              setNumOfUnits((prev) => (prev >= 100 ? 100 : prev + 1))
+            }
             className="cursor-pointer"
           />
         </div>
+        <p className="text-xs text-gray-600">from 1 upto 100</p>
       </div>
 
       <form
         onSubmit={handelSubmit}
-        className={`mb-4 flex h-[52px] w-full items-center overflow-hidden rounded-md bg-[#f1f1f1]`}
+        className={`mb-4 flex h-[52px] w-full items-center overflow-hidden rounded-md border-2 border-transparent bg-[#f1f1f1] focus-within:border-[#FF8C4B]`}
       >
         <input
           type="text"
@@ -94,7 +114,7 @@ const ProductDetails = ({
           name="coupon"
           aria-label="Enter your coupon"
           placeholder="Enter your coupon"
-          className="h-full w-full bg-transparent px-4 focus:outline-transparent"
+          className="h-full w-full bg-transparent px-4 focus:outline-none"
           ref={inputRef}
         />
         <button

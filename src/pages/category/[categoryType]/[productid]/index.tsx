@@ -3,8 +3,6 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import { Meta } from '@/layouts/Meta';
 import cat1 from '@/public/assets/images/cat1.png';
-import { addToCart } from '@/redux/slices/cartSlice';
-import { useDispatch } from '@/redux/store';
 import { Main } from '@/templates/Main';
 import ImageSwiper from '@/ui/components/ImageSwiper';
 import ProductDesc from '@/ui/sections/product-page/ProductDesc';
@@ -33,20 +31,6 @@ Eget est vel sagittis amet sit eu eu ullamcorper tellus. Leo mauris, faucibus vu
 };
 
 const ProductPage = () => {
-  const dispatch = useDispatch();
-  const addItem = (product: typeof productA) => {
-    dispatch(
-      addToCart({
-        id: product.title,
-        title: product.title,
-        subTitle: product.subTitle,
-        price: product.price,
-        image: product.image,
-        count: 1,
-      })
-    );
-  };
-
   return (
     <Main meta={<Meta title="Product A" description="Product description" />}>
       <div className="min-h-screen">
@@ -60,7 +44,7 @@ const ProductPage = () => {
         <div className="mb-12 flex flex-col gap-6 xl:flex-row">
           <ImageSwiper />
           <div className="flex-1">
-            <ProductDetails {...productA} addItem={() => addItem(productA)} />
+            <ProductDetails {...productA} />
           </div>
         </div>
         <div>

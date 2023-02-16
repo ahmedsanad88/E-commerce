@@ -37,7 +37,7 @@ const cartSlice = createSlice({
         state.data.map((item) => {
           if (item.id === action.payload.id) {
             // eslint-disable-next-line no-param-reassign
-            item.count += 1;
+            item.count += action.payload.count;
           }
           return state;
         });
@@ -59,6 +59,22 @@ const cartSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.data = [];
     },
+    removeOneProduct: (
+      state: Draft<typeof initialState>,
+      action: PayloadAction<string>
+    ) => {
+      // eslint-disable-next-line no-param-reassign
+      state.data = state.data.filter((item, _idx) => {
+        if (item.id === action.payload) {
+          if (item.count <= 1) {
+            return item.id !== action.payload;
+          }
+          // eslint-disable-next-line no-param-reassign
+          item.count -= 1;
+        }
+        return item;
+      });
+    },
   },
 });
 
@@ -66,6 +82,7 @@ const cartSlice = createSlice({
 // export const getUserState = (state: { user: UserState }) => state.user;
 
 // Exports all actions
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart, removeOneProduct } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

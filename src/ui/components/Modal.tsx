@@ -17,12 +17,12 @@ const Modal = ({
 }: IModalProps) => {
   return shown ? (
     <div
-      className={`fixed inset-0 z-[2] flex items-center justify-center bg-black/40`}
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/40`}
       onClick={() => close(false)}
     >
       <div className="relative h-full w-full">
         <div
-          className={`absolute min-h-[200px] w-[90%] bg-white p-6 lg:w-[60%] ${position}`}
+          className={`absolute min-h-[200px] w-[90%] rounded-lg bg-white p-6 shadow-xl sm:w-fit ${position}`}
           onClick={(e) => {
             // do not close modal if anything inside modal content is clicked
             e.stopPropagation();
