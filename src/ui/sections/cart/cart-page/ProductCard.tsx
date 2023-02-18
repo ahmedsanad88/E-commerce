@@ -15,44 +15,85 @@ const ProductCard = ({
 }: ICartSliceInitialState) => {
   const dispatch = useDispatch();
   return (
-    <div className="my-6 grid grid-cols-8 gap-8 2xl:gap-16">
-      <div className="col-span-5 flex items-start gap-4">
-        <div className="h-[100px] w-[100px]">
-          <Image
-            src={image}
-            alt={title}
-            placeholder="blur"
-            className="aspect-square rounded-lg shadow"
-            blurDataURL={title}
-            width={100}
-            height={100}
-          />
+    <div>
+      <div className="my-6 hidden grid-cols-8 gap-8 md:grid 2xl:gap-16">
+        <div className="col-span-5 flex items-start gap-4">
+          <div className="h-[100px] w-[100px]">
+            <Image
+              src={image}
+              alt={title}
+              placeholder="blur"
+              className="aspect-square rounded-lg shadow"
+              blurDataURL={title}
+              width={100}
+              height={100}
+            />
+          </div>
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <h2 className="text-xl font-semibold text-[#171520]">{title}</h2>
+              <p className="text-[#626262]">{subTitle}</p>
+            </div>
+          </div>
         </div>
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <h2 className="text-xl font-semibold text-[#171520]">{title}</h2>
-            <p className="text-[#626262]">{subTitle}</p>
+        <div className="col-span-3 flex flex-col justify-between">
+          <div className="grid w-full grid-cols-3 gap-8 2xl:gap-16">
+            <p>{`$${price}`}</p>
+            <p>{count}</p>
+            <p>{`$${price * count}`}</p>
+          </div>
+          <div className="grid w-full grid-cols-3 gap-8 2xl:gap-16">
+            <button className="col-span-2 border-none text-left font-semibold text-[#1B4B66] underline">
+              Move To Wishlist
+            </button>
+            <button
+              className="border-none text-left font-semibold text-[#B00020] underline"
+              onClick={() => {
+                dispatch(removeFromCart(id));
+              }}
+            >
+              Remove
+            </button>
           </div>
         </div>
       </div>
-      <div className="col-span-3 flex flex-col justify-between">
-        <div className="grid w-full grid-cols-3 gap-8 2xl:gap-16">
-          <p>{`$${price}`}</p>
-          <p>{count}</p>
-          <p>{`$${price * count}`}</p>
+      {/* Mobile view */}
+      <div className="my-6 flex flex-col items-center md:hidden">
+        <div className="mb-4 flex flex-col items-center gap-4">
+          <div className="h-[130px] w-[130px]">
+            <Image
+              src={image}
+              alt={title}
+              placeholder="blur"
+              className="aspect-square rounded-lg shadow"
+              blurDataURL={title}
+              width={130}
+              height={130}
+            />
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <h2 className="text-xl font-semibold text-[#171520]">{title}</h2>
+            <p className="text-center text-[#626262]">{subTitle}</p>
+          </div>
         </div>
-        <div className="grid w-full grid-cols-3 gap-8 2xl:gap-16">
-          <button className="col-span-2 border-none text-left font-semibold text-[#1B4B66] underline">
-            Move To Wishlist
-          </button>
-          <button
-            className="border-none text-left font-semibold text-[#B00020] underline"
-            onClick={() => {
-              dispatch(removeFromCart(id));
-            }}
-          >
-            Remove
-          </button>
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex w-full flex-col items-start justify-center">
+            <p className="font-medium">{`Subtotal:`}</p>
+            <p className="pl-4">{`$${price} X ${count} = $${price * count}`}</p>
+          </div>
+          <div className="flex w-full flex-wrap items-center justify-center gap-4">
+            <button className="border-none text-left font-semibold text-[#1B4B66] underline">
+              Move To Wishlist
+            </button>
+            <button
+              className="border-none text-left font-semibold text-[#B00020] underline"
+              onClick={() => {
+                dispatch(removeFromCart(id));
+              }}
+            >
+              Remove
+            </button>
+          </div>
         </div>
       </div>
     </div>

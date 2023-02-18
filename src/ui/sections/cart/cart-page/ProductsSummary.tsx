@@ -19,12 +19,13 @@ const ProductsSummary = () => {
   return (
     <div className="flex-1">
       {/* <div className="flex gap-16 border-b-2 border-black/10 py-2 text-[#626262]"> */}
-      <div className="grid grid-cols-8 gap-8 border-b-2 border-black/10 py-2 text-[#626262] 2xl:gap-16">
+      <div className="hidden grid-cols-8 gap-8 border-b-2 border-black/10 py-2 text-[#626262] md:grid 2xl:gap-16">
         <p className="col-span-5">Product Name</p>
         <p className="col-span-1">Price</p>
         <p className="col-span-1">Qty</p>
         <p className="col-span-1">Subtotal</p>
       </div>
+
       {data.length > 0 ? (
         data.map((item, idx) => <ProductCard {...item} key={idx} />)
       ) : (
@@ -37,6 +38,7 @@ const ProductsSummary = () => {
           </Link>
         </div>
       )}
+
       <div className="mt-16 w-full lg:w-[60%]">
         <form
           onSubmit={handelSubmit}
