@@ -1,10 +1,11 @@
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
 import { useSelector } from '@/redux/store';
 
-const OrderSummary = () => {
+import SimpleProduct from './SimpleProduct';
+
+const OrdersSummary = () => {
   const [subtotal, setSubtotal] = useState(0);
   const { data }: { data: ICartSliceInitialState[] } = useSelector(
     (state) => state.cart
@@ -22,11 +23,23 @@ const OrderSummary = () => {
       setSubtotal(0);
     }
   }, [data]);
-
   return (
     <div className="mx-auto flex w-full flex-col gap-4 sm:w-[400px]">
       <h3 className="border-b-2 border-black/10 py-2 text-xl font-semibold text-[#13101E]">
         Order Summary
+      </h3>
+      {data.length > 0 ? (
+        <div className="mb-6">
+          {data.map((item, idx) => (
+            <SimpleProduct {...item} quantity={item.count} key={idx} />
+          ))}
+        </div>
+      ) : (
+        <p>No Items added!</p>
+      )}
+
+      <h3 className="border-b-2 border-black/10 py-2 text-xl font-semibold text-[#13101E]">
+        Order Details
       </h3>
       <div className="flex w-full justify-between gap-4">
         <p>Subtotal:</p>
@@ -44,20 +57,8 @@ const OrderSummary = () => {
         <p>Grand Total:</p>
         <p>{`$${subtotal === 0 ? 0 : subtotal - 13}`}</p>
       </div>
-      <div className="flex flex-wrap gap-2">
-        <Link href={`/cart/checkout`} className="h-10 w-full">
-          <button className="h-full w-full rounded-md bg-[#1B4B66] text-white">
-            Confirm Address
-          </button>
-        </Link>
-        <Link href="/" className="h-10 w-full">
-          <button className="h-full w-full rounded-md border border-[#1B4B66] text-[#1B4B66]">
-            Continue Shopping
-          </button>
-        </Link>
-      </div>
     </div>
   );
 };
 
-export default OrderSummary;
+export default OrdersSummary;

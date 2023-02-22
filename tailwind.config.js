@@ -45,6 +45,18 @@ module.exports = {
       gridTemplateColumns: {
         products: 'repeat(auto-fit, minmax(290px, 1fr))',
       },
+      keyframes: {
+        error: {
+          '0%': { transform: 'translateX(0)' },
+          '25%': { transform: 'translateX(50px)' },
+          '50%': { transform: 'translateX(25px)' },
+          '75%': { transform: 'translateX(50px)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        'input-label': 'error 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1',
+      },
     },
   },
   plugins: [],
