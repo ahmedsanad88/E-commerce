@@ -1,6 +1,6 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+
 
 a {
   @apply text-blue-700;
@@ -53,3 +53,33 @@ a:hover {
 .mySwiper3 .swiper-slide img {
   @apply h-[50px] w-[50px] sm:h-[75px] sm:w-[75px] aspect-square rounded
 }
+
+.credit-card {
+  background-image:  linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(60deg, rgba(0,0,0,0.5) 25%, transparent 25.5%, transparent 75%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.5)), linear-gradient(60deg, rgba(0,0,0,0.5) 25%, transparent 25.5%, transparent 75%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.5));
+  background-size: 200px 350px;
+  background-position: 0 0, 0 0, 100px 175px, 100px 175px, 0 0, 100px 175px;
+  background-color: #212121;
+}
+
+.card-container {
+  perspective: 1600px;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transform-origin: center left;
+}
+
+.rotate-card {
+  transform: rotateY(180deg) translateX(-100%);
+}
+
+.normal-rotate {
+  transform: rotateY(180deg);
+}
+
+.backface-hide {
+  backface-visibility: hidden;
+}
+
+@tailwind utilities;

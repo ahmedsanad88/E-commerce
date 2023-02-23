@@ -102,7 +102,7 @@ const Address = () => {
                   className="h-full w-full rounded-md bg-[#1B4B66] px-4 text-white"
                   // onClick={() => submitForm()}
                 >
-                  Next
+                  Pay
                 </button>
               </Link>
               <Link href="/" className="h-10 w-full md:w-fit">
