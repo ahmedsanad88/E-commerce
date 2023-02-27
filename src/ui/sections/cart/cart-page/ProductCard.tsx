@@ -5,6 +5,10 @@ import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
 import { removeFromCart } from '@/redux/slices/cartSlice';
 import { useDispatch } from '@/redux/store';
 
+interface IProductCardProps extends ICartSliceInitialState {
+  showActions: boolean;
+}
+
 const ProductCard = ({
   id,
   title,
@@ -12,7 +16,8 @@ const ProductCard = ({
   image,
   count,
   price,
-}: ICartSliceInitialState) => {
+  showActions,
+}: IProductCardProps) => {
   const dispatch = useDispatch();
   return (
     <div>
@@ -42,19 +47,21 @@ const ProductCard = ({
             <p>{count}</p>
             <p>{`$${price * count}`}</p>
           </div>
-          <div className="grid w-full grid-cols-3 gap-8 2xl:gap-16">
-            <button className="col-span-2 border-none text-left font-semibold text-[#1B4B66] underline">
-              Move To Wishlist
-            </button>
-            <button
-              className="border-none text-left font-semibold text-[#B00020] underline"
-              onClick={() => {
-                dispatch(removeFromCart(id));
-              }}
-            >
-              Remove
-            </button>
-          </div>
+          {showActions && (
+            <div className="grid w-full grid-cols-3 gap-8 2xl:gap-16">
+              <button className="col-span-2 border-none text-left font-semibold text-[#1B4B66] underline">
+                Move To Wishlist
+              </button>
+              <button
+                className="border-none text-left font-semibold text-[#B00020] underline"
+                onClick={() => {
+                  dispatch(removeFromCart(id));
+                }}
+              >
+                Remove
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {/* Mobile view */}
@@ -81,19 +88,21 @@ const ProductCard = ({
             <p className="font-medium">{`Subtotal:`}</p>
             <p className="pl-4">{`$${price} X ${count} = $${price * count}`}</p>
           </div>
-          <div className="flex w-full flex-wrap items-center justify-center gap-4">
-            <button className="border-none text-left font-semibold text-[#1B4B66] underline">
-              Move To Wishlist
-            </button>
-            <button
-              className="border-none text-left font-semibold text-[#B00020] underline"
-              onClick={() => {
-                dispatch(removeFromCart(id));
-              }}
-            >
-              Remove
-            </button>
-          </div>
+          {showActions && (
+            <div className="flex w-full flex-wrap items-center justify-center gap-4">
+              <button className="border-none text-left font-semibold text-[#1B4B66] underline">
+                Move To Wishlist
+              </button>
+              <button
+                className="border-none text-left font-semibold text-[#B00020] underline"
+                onClick={() => {
+                  dispatch(removeFromCart(id));
+                }}
+              >
+                Remove
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

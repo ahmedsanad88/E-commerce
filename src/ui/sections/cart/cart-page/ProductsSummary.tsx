@@ -27,7 +27,7 @@ const ProductsSummary = () => {
       </div>
 
       {data.length > 0 ? (
-        data.map((item, idx) => <ProductCard {...item} key={idx} />)
+        data.map((item, idx) => <ProductCard {...item} key={idx} showActions />)
       ) : (
         <div className="mt-8 grid w-full place-items-center">
           <p className="text-center text-xl font-semibold text-[#1B4B66]">

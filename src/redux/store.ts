@@ -7,6 +7,7 @@ import {
 } from 'react-redux';
 
 import cartSlice from './slices/cartSlice';
+import userSidebarSlice from './slices/user-slice/userSidebarSlice';
 
 /**
  * Creates a store and includes all the slices as reducers.
@@ -15,6 +16,7 @@ export const store: Store = configureStore({
   reducer: {
     // tableData: tableDataSlice,
     cart: cartSlice,
+    userSidebar: userSidebarSlice,
   },
 });
 

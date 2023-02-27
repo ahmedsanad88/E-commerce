@@ -83,7 +83,9 @@ const Navbar = () => {
           <div className="absolute top-0 -right-1 h-3 w-3 animate-ping rounded-full bg-[#FF8C4B]"></div>
           <div className="absolute top-0 -right-1 h-3 w-3 rounded-full bg-[#FF8C4B]"></div>
         </div>
-        <RiUserLine className="h-6 w-6 cursor-pointer" />
+        <Link href={`/user-profile`}>
+          <RiUserLine className="h-6 w-6 cursor-pointer" />
+        </Link>
         <div className="relative cursor-pointer">
           <HiOutlineShoppingBag
             className="h-6 w-6"

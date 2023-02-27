@@ -90,9 +90,9 @@ const CreditCard = () => {
                   src={connection}
                   alt="connection icon"
                   placeholder="blur"
-                  width={40}
+                  width={39}
                   height={50}
-                  className="h-auto w-[40px] object-cover"
+                  className="h-[50px] w-[39px] object-cover"
                 />
                 <div
                   className="absolute top-4 left-4 z-10 flex cursor-pointer flex-col items-center"
@@ -239,7 +239,7 @@ const CreditCard = () => {
           </div>
           {/* backface of card */}
           <div
-            className={`credit-card backface-hide normal-rotate absolute inset-0 h-full w-full rounded-2xl p-6 shadow-md`}
+            className={`credit-card backface-hide normal-rotate absolute inset-0 flex h-full w-full flex-col rounded-2xl p-6 shadow-md`}
           >
             <Formik
               initialValues={{
@@ -258,19 +258,9 @@ const CreditCard = () => {
               }}
             >
               {({ errors, touched }) => (
-                <Form className="flex w-full flex-col gap-1">
-                  <div className="relative h-[100px] w-full rounded-md bg-gradient-to-b from-gray-900 via-gray-800 to-black">
-                    <div
-                      className="absolute top-[50%] left-4 z-10 flex translate-y-[-50%] cursor-pointer flex-col items-center gap-2"
-                      onClick={() => setIsCardFlipped((prev) => !prev)}
-                    >
-                      <TbHandClick className="text-2xl text-white" />
-                      <p className="text-xs font-medium text-white">
-                        Click Me!
-                      </p>
-                    </div>
-                  </div>
-                  <div className="relative mt-4 flex h-full w-full flex-col items-end justify-center pb-5">
+                <Form className="w-full">
+                  <div className="h-[100px] w-full rounded-md bg-gradient-to-b from-gray-900 via-gray-800 to-black"></div>
+                  <div className="relative mt-4 flex w-full flex-col items-end justify-center pb-5">
                     <label
                       className={`text-right font-medium capitalize text-white ${
                         errors.cvv && touched.cvv
@@ -301,6 +291,15 @@ const CreditCard = () => {
                 </Form>
               )}
             </Formik>
+            <div className="relative flex flex-1 items-center">
+              <div
+                className="flex cursor-pointer flex-col items-center gap-2"
+                onClick={() => setIsCardFlipped((prev) => !prev)}
+              >
+                <TbHandClick className="text-2xl text-white" />
+                <p className="text-xs font-medium text-white">Click Me!</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

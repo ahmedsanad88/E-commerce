@@ -82,4 +82,8 @@ a:hover {
   backface-visibility: hidden;
 }
 
+.user-profile-option {
+  @apply before:absolute before:content-[''] before:left-[-4px] before:w-[4px] before:bg-[#1B4B66] before:animate-move-bar
+}
+
 @tailwind utilities;

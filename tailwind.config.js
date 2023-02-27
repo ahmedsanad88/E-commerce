@@ -54,9 +54,15 @@ module.exports = {
           '75%': { transform: 'translateX(25px)' },
           '100%': { transform: 'translateX(0)' },
         },
+        moveBar: {
+          '0%': { height: '0%' },
+          '100%': { height: '100%' },
+        },
       },
       animation: {
         'input-label': 'error 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1',
+        'move-bar':
+          'moveBar 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1 forwards',
       },
     },
   },
