@@ -7,10 +7,10 @@ import banner from '@/public/assets/images/makeup-banner.png';
 import { Main } from '@/templates/Main';
 import Banner from '@/ui/components/Banner';
 import SubBanner from '@/ui/components/SubBanner';
-import Brands from '@/ui/sections/Brands';
-import CategoryCard from '@/ui/sections/CategoryCard';
-import Collections from '@/ui/sections/Collections';
-import NewArrivals from '@/ui/sections/NewArrivals';
+import Brands from '@/ui/sections/home/Brands';
+import CategoryCard from '@/ui/sections/home/CategoryCard';
+import Collections from '@/ui/sections/home/Collections';
+import NewArrivals from '@/ui/sections/home/NewArrivals';
 
 const Index = () => {
   // const router = useRouter();
@@ -20,7 +20,7 @@ const Index = () => {
       meta={
         <Meta
           title="Buy/2 E-commerce"
-          description="With Buy/2, You will find the best deals on your favorite products."
+          description="Online shopping from one of the earth's biggest online stores provides wide range of selection of apparel & accessories, jewelry, beauty & personal care & just about anything else.With Buy/2, You will find the best deals on your favorite products."
         />
       }
     >

@@ -3,9 +3,8 @@ import React from 'react';
 import { SwiperSlide } from 'swiper/react';
 
 import { collections } from '@/data/collection';
-
-import CollectionCard from '../components/CollectionCard';
-import ProductsSlider from '../components/ProductsSlider';
+import CollectionCard from '@/ui/components/CollectionCard';
+import ProductsSlider from '@/ui/components/ProductsSlider';
 
 const Collections = () => {
   return (

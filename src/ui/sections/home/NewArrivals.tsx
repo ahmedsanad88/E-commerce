@@ -3,9 +3,9 @@ import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { SwiperSlide } from 'swiper/react';
 
-import type { INewArrivalCardProps } from '../components/NewArrivalCard';
-import ProductCard from '../components/NewArrivalCard';
-import ProductsSlider from '../components/ProductsSlider';
+import type { INewArrivalCardProps } from '@/ui/components/NewArrivalCard';
+import ProductCard from '@/ui/components/ProductCard';
+import ProductsSlider from '@/ui/components/ProductsSlider';
 
 const product1: INewArrivalCardProps = {
   title: 'Grande',

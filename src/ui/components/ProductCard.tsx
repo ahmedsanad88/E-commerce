@@ -3,13 +3,20 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { MdAddShoppingCart, MdOutlineFavoriteBorder } from 'react-icons/md';
 
-import type { INewArrivalCardProps } from './NewArrivalCard';
+import { addToCart } from '@/redux/slices/cartSlice';
+import { useDispatch } from '@/redux/store';
+
+// import type { INewArrivalCardProps } from './NewArrivalCard';
 import PriceDiscount from './PriceDiscount';
 import RatingStar from './RatingStar';
 
-export interface IProductCardProps extends INewArrivalCardProps {
-  rating: number;
-  discount: number;
+export interface IProductCardProps {
+  title: string;
+  category: string;
+  price: number;
+  image: string;
+  rating?: number;
+  discount?: number;
 }
 
 const ProductCard = ({
@@ -17,20 +24,41 @@ const ProductCard = ({
   category,
   price,
   image,
-  rating = 4.6,
+  rating,
   discount,
 }: IProductCardProps) => {
   const router = useRouter();
   const { categoryType } = router.query;
+  const dispatch = useDispatch();
+
+  const addItem = () => {
+    dispatch(
+      addToCart({
+        id: title,
+        title,
+        subTitle: category,
+        price,
+        image,
+        count: 1,
+      })
+    );
+  };
+
   return (
     <div
       className="group relative flex max-w-[450px] cursor-pointer flex-col gap-4 overflow-hidden lg:w-full"
-      onClick={() => router.push(`/category/${categoryType}/bag`)}
+      onClick={() =>
+        router.push(`/category/${categoryType || category}/${title}`)
+      }
     >
       <div className="absolute top-2 right-2 flex flex-col gap-2">
         <MdAddShoppingCart
           className="translate-x-[150%] cursor-pointer rounded-full bg-[#13101E]/80 p-2 text-4xl text-white transition-transform duration-200 group-hover:translate-x-0"
           aria-label="Add to Cart"
+          onClick={(e) => {
+            e.stopPropagation();
+            addItem();
+          }}
         />
         <MdOutlineFavoriteBorder
           className="translate-x-[150%] cursor-pointer rounded-full bg-[#13101E]/80 p-2 text-4xl text-white transition-transform delay-100 duration-200 group-hover:translate-x-0"
@@ -55,17 +83,15 @@ const ProductCard = ({
         </div>
         <div className="mb-1">
           <p>{category}</p>
-          <RatingStar rate={rating} />
+          {rating && <RatingStar rate={rating} />}
         </div>
-        <PriceDiscount price={price} discount={discount} />
-        {/* <div className="flex items-center gap-2">
-          <p className="font-semibold">{`$ ${price.toFixed(3)}`}</p>
-          <p className="text-sm line-through">{`$ ${(
-            (price * discount) / 100 +
-            price
-          ).toFixed(3)}`}</p>
-          <p className="font-semibold text-[#E21D1D]">{`${discount}% OFF`}</p>
-        </div> */}
+        {discount ? (
+          <PriceDiscount price={price} discount={discount} />
+        ) : (
+          <div className="flex items-center gap-2">
+            <p className="font-semibold">{`$ ${price.toFixed(3)}`}</p>
+          </div>
+        )}
       </div>
     </div>
   );

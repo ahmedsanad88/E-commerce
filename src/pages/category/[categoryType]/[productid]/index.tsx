@@ -15,7 +15,7 @@ const productA: {
   price: number;
   discount: number;
   desc: string;
-  image: StaticImageData;
+  image: StaticImageData | string;
 } = {
   title: 'Coach',
   subTitle: 'Leather Coach Bag with adjustable starps.',

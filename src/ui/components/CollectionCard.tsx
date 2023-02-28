@@ -1,8 +1,9 @@
+import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import React from 'react';
 
 export interface ICollectionCardProps {
-  image: string;
+  image: string | StaticImageData;
   alt: string;
 }
 
@@ -15,7 +16,7 @@ const CollectionCard = ({ image, alt }: ICollectionCardProps) => {
           alt={alt}
           placeholder="blur"
           className="aspect-square"
-          blurDataURL={image}
+          // blurDataURL={image}
           width={280}
           height={280}
         />

@@ -3,9 +3,8 @@ import React from 'react';
 import { SwiperSlide } from 'swiper/react';
 
 import { brands } from '@/data/brands';
-
-import BrandCard from '../components/BrandCard';
-import ProductsSlider from '../components/ProductsSlider';
+import BrandCard from '@/ui/components/BrandCard';
+import ProductsSlider from '@/ui/components/ProductsSlider';
 
 const Brands = () => {
   return (

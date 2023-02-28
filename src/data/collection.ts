@@ -1,42 +1,38 @@
-export const collections = [
+import type { StaticImageData } from 'next/image';
+
+import cat1 from '@/public/assets/images/cat1.png';
+import cat2 from '@/public/assets/images/cat2.png';
+import cat3 from '@/public/assets/images/cat3.png';
+import cat4 from '@/public/assets/images/cat4.png';
+import cat5 from '@/public/assets/images/cat5.png';
+import cat6 from '@/public/assets/images/cat6.png';
+
+export const collections: {
+  image: string | StaticImageData;
+  alt: string;
+}[] = [
   {
-    alt: 'Music',
-    image: 'http://dummyimage.com/280x280.png/5fa2dd/ffffff',
+    alt: 'Personal Care',
+    image: cat1,
   },
   {
-    alt: 'Music',
-    image: 'http://dummyimage.com/280x280.png/dddddd/000000',
+    alt: 'Handbags',
+    image: cat2,
   },
   {
-    alt: 'Electronics',
-    image: 'http://dummyimage.com/280x280.png/5fa2dd/ffffff',
+    alt: 'Wrist Watches',
+    image: cat3,
   },
   {
-    alt: 'Kids',
-    image: 'http://dummyimage.com/280x280.png/5fa2dd/ffffff',
+    alt: 'Sun Glasses',
+    image: cat4,
   },
   {
-    alt: 'Electronics',
-    image: 'http://dummyimage.com/280x280.png/dddddd/000000',
+    alt: 'Jewelry',
+    image: cat5,
   },
   {
-    alt: 'Computers',
-    image: 'http://dummyimage.com/280x280.png/ff4444/ffffff',
-  },
-  {
-    alt: 'Computers',
-    image: 'http://dummyimage.com/280x280.png/dddddd/000000',
-  },
-  {
-    alt: 'Baby',
-    image: 'http://dummyimage.com/280x280.png/5fa2dd/ffffff',
-  },
-  {
-    alt: 'Games',
-    image: 'http://dummyimage.com/280x280.png/dddddd/000000',
-  },
-  {
-    alt: 'Health',
-    image: 'http://dummyimage.com/280x280.png/dddddd/000000',
+    alt: 'apparel',
+    image: cat6,
   },
 ];

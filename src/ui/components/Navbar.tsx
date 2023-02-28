@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { FaArrowCircleDown } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
@@ -32,6 +33,9 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
+  const router = useRouter();
+  const { categoryType } = router.query;
+
   useEffect(() => {
     if (data) {
       // might Need to be adjusted with different products
@@ -55,8 +59,10 @@ const Navbar = () => {
           {HeadTags.map((tag, i) => (
             <li key={i} className="under-line relative overflow-hidden">
               <Link
-                href={`/${tag.toLowerCase()}`}
-                className="border-none text-gray-700 hover:text-[#1B4B66]"
+                href={`/category/${tag.toLowerCase()}`}
+                className={`border-none text-gray-700 hover:text-[#1B4B66] ${
+                  categoryType === tag.toLowerCase() && 'font-semibold'
+                }`}
               >
                 {tag}
               </Link>
@@ -79,16 +85,16 @@ const Navbar = () => {
       </form>
       <div className="flex gap-5">
         <div className="relative cursor-pointer">
-          <MdOutlineFavoriteBorder className="h-6 w-6" />
+          <MdOutlineFavoriteBorder className="h-6 w-6 text-[#1B4B66]" />
           <div className="absolute top-0 -right-1 h-3 w-3 animate-ping rounded-full bg-[#FF8C4B]"></div>
           <div className="absolute top-0 -right-1 h-3 w-3 rounded-full bg-[#FF8C4B]"></div>
         </div>
         <Link href={`/user-profile`}>
-          <RiUserLine className="h-6 w-6 cursor-pointer" />
+          <RiUserLine className="h-6 w-6 cursor-pointer text-[#1B4B66]" />
         </Link>
         <div className="relative cursor-pointer">
           <HiOutlineShoppingBag
-            className="h-6 w-6"
+            className="h-6 w-6 text-[#1B4B66]"
             onClick={() => setShowModal(true)}
           />
           <div className="pointer-events-none absolute top-1 right-0 h-3 w-3 animate-ping rounded-full bg-[#4b9fff]"></div>
