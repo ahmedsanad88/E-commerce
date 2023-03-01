@@ -6,7 +6,8 @@ import {
   useSelector as useSelectorBase,
 } from 'react-redux';
 
-import cartSlice from './slices/cartSlice';
+import cartSlice from './slices/cart-slice/cartSlice';
+import favSlice from './slices/fav-slice/favSlice';
 import userSidebarSlice from './slices/user-slice/userSidebarSlice';
 
 /**
@@ -17,6 +18,7 @@ export const store: Store = configureStore({
     // tableData: tableDataSlice,
     cart: cartSlice,
     userSidebar: userSidebarSlice,
+    favorite: favSlice,
   },
 });
 

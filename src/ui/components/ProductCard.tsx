@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { MdAddShoppingCart, MdOutlineFavoriteBorder } from 'react-icons/md';
 
-import { addToCart } from '@/redux/slices/cartSlice';
+import { addToCart } from '@/redux/slices/cart-slice/cartSlice';
+import { addToFavorite } from '@/redux/slices/fav-slice/favSlice';
 import { useDispatch } from '@/redux/store';
 
 // import type { INewArrivalCardProps } from './NewArrivalCard';
@@ -44,11 +45,25 @@ const ProductCard = ({
     );
   };
 
+  const addFavItem = () => {
+    dispatch(
+      addToFavorite({
+        id: title,
+        title,
+        subTitle: category,
+        price,
+        image,
+      })
+    );
+  };
+
   return (
     <div
       className="group relative flex max-w-[450px] cursor-pointer flex-col gap-4 overflow-hidden lg:w-full"
       onClick={() =>
-        router.push(`/category/${categoryType || category}/${title}`)
+        router.push(
+          `/category/${categoryType || category.replaceAll(' ', '')}/${title}`
+        )
       }
     >
       <div className="absolute top-2 right-2 flex flex-col gap-2">
@@ -63,6 +78,10 @@ const ProductCard = ({
         <MdOutlineFavoriteBorder
           className="translate-x-[150%] cursor-pointer rounded-full bg-[#13101E]/80 p-2 text-4xl text-white transition-transform delay-100 duration-200 group-hover:translate-x-0"
           aria-label="Add to Favorite"
+          onClick={(e) => {
+            e.stopPropagation();
+            addFavItem();
+          }}
         />
       </div>
       <div className="h-full w-full">

@@ -1,7 +1,5 @@
-import React from 'react';
-
-import type { RootState } from '@/redux/store';
-import { useSelector } from '@/redux/store';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 import Addresses from './user-option/Addresses';
 import Cards from './user-option/Cards';
@@ -10,24 +8,50 @@ import PersonalInfo from './user-option/PersonalInfo';
 import ReferEarn from './user-option/ReferEarn';
 import Reviews from './user-option/Reviews';
 import Wishlist from './user-option/Wishlist';
-import type { AllOptions } from './UserSidebar';
 
 const showContent = {
-  'Personal Information': <PersonalInfo />,
-  'Refer and Earn': <ReferEarn />,
-  'My Orders': <Orders />,
-  'My Wishlist': <Wishlist />,
-  'My Reviews': <Reviews />,
-  'My Address Book': <Addresses />,
-  'My Saved Cards': <Cards />,
+  'personal-information': <PersonalInfo />,
+  'refer-and-earn': <ReferEarn />,
+  'my-orders': <Orders />,
+  'my-wishlist': <Wishlist />,
+  'my-reviews': <Reviews />,
+  'my-address-book': <Addresses />,
+  'my-saved-cards': <Cards />,
 };
 
-const UserContent = () => {
-  const { selectedOption }: { selectedOption: AllOptions } = useSelector(
-    (state: RootState) => state.userSidebar
-  );
+interface IUserContentProps {
+  path: string | string[];
+}
 
-  return <div className="flex-1">{showContent[selectedOption]}</div>;
+const UserContent = ({ path }: IUserContentProps) => {
+  const [targetContent, setTargetContent] =
+    useState<keyof typeof showContent>();
+
+  const router = useRouter();
+
+  // const { selectedOption }: { selectedOption: AllOptions } = useSelector(
+  //   (state: RootState) => state.userSidebar
+  // );
+
+  useEffect(() => {
+    if (path[0] === '') {
+      setTargetContent('personal-information');
+      return;
+    }
+    if (typeof path === 'object' && path[0]) {
+      if (Object.hasOwn(showContent, path[0])) {
+        setTargetContent(path[0] as keyof typeof showContent);
+      } else {
+        router.replace('/404');
+      }
+    }
+  }, [path]);
+
+  return (
+    <div className="flex-1">
+      {targetContent ? showContent[targetContent] : <p>Loading</p>}
+    </div>
+  );
 };
 
 export default UserContent;

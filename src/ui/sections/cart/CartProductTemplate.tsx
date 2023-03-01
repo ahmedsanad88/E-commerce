@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
 import { IoClose } from 'react-icons/io5';
 
-import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
+import type { ICartSliceInitialState } from '@/redux/slices/cart-slice/cartSlice';
 import {
   addToCart,
   removeFromCart,
   removeOneProduct,
-} from '@/redux/slices/cartSlice';
+} from '@/redux/slices/cart-slice/cartSlice';
 import { useDispatch } from '@/redux/store';
 
 const CartProductTemplate = ({

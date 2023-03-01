@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import {
   AiFillInstagram,
@@ -48,12 +49,11 @@ const Footer = () => {
         <div className="flex flex-col items-start">
           <h2 className="mb-4 font-medium text-white">about</h2>
           {footer2.map((item, i) => (
-            <p
-              key={i}
-              className="cursor-pointer text-[#B6B6B6] hover:text-gray-100 hover:underline"
-            >
-              {item}
-            </p>
+            <Link href={item === 'about us' ? '/about' : '/'} key={i}>
+              <p className="cursor-pointer text-[#B6B6B6] hover:text-gray-100 hover:underline">
+                {item}
+              </p>
+            </Link>
           ))}
         </div>
         <div className="flex flex-col items-start">

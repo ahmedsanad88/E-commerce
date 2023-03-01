@@ -10,11 +10,12 @@ import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { RiUserLine } from 'react-icons/ri';
 
 import logo from '@/public/assets/images/Buy2.gif';
-import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
+import type { ICartSliceInitialState } from '@/redux/slices/cart-slice/cartSlice';
 import type { RootState } from '@/redux/store';
 import { useSelector } from '@/redux/store';
 
 import ModalProducts from '../sections/cart/ModalProducts';
+import Favorite from '../sections/favorite/Favorite';
 import Modal from './Modal';
 
 const HeadTags: string[] = [
@@ -32,6 +33,7 @@ const Navbar = () => {
   const [showCategories, setShowCategories] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [showFavModel, setShowFavModel] = useState(false);
 
   const router = useRouter();
   const { categoryType } = router.query;
@@ -84,19 +86,22 @@ const Navbar = () => {
         </button>
       </form>
       <div className="flex gap-5">
-        <div className="relative cursor-pointer">
+        <div
+          className="relative cursor-pointer"
+          onClick={() => setShowFavModel(true)}
+        >
           <MdOutlineFavoriteBorder className="h-6 w-6 text-[#1B4B66]" />
           <div className="absolute top-0 -right-1 h-3 w-3 animate-ping rounded-full bg-[#FF8C4B]"></div>
           <div className="absolute top-0 -right-1 h-3 w-3 rounded-full bg-[#FF8C4B]"></div>
         </div>
-        <Link href={`/user-profile`}>
+        <Link href={`/user-profile/personal-information`}>
           <RiUserLine className="h-6 w-6 cursor-pointer text-[#1B4B66]" />
         </Link>
-        <div className="relative cursor-pointer">
-          <HiOutlineShoppingBag
-            className="h-6 w-6 text-[#1B4B66]"
-            onClick={() => setShowModal(true)}
-          />
+        <div
+          className="relative cursor-pointer"
+          onClick={() => setShowModal(true)}
+        >
+          <HiOutlineShoppingBag className="h-6 w-6 text-[#1B4B66]" />
           <div className="pointer-events-none absolute top-1 right-0 h-3 w-3 animate-ping rounded-full bg-[#4b9fff]"></div>
           <div className="pointer-events-none absolute top-1 right-0 flex h-3 w-3 items-center justify-center rounded-full bg-[#4b9fff]">
             <p className="text-[0.5rem] text-white">
@@ -128,7 +133,7 @@ const Navbar = () => {
         <ul className="flex flex-col">
           {HeadTags.map((tag, i) => (
             <Link
-              href={`/${tag.toLowerCase()}`}
+              href={`/category/${tag.toLowerCase()}`}
               className="border-none text-gray-700 hover:text-[#1B4B66]"
               key={i}
             >
@@ -146,6 +151,13 @@ const Navbar = () => {
         position="right-2 top-24 sm:top-20"
       >
         <ModalProducts />
+      </Modal>
+      <Modal
+        shown={showFavModel}
+        close={setShowFavModel}
+        position="right-2 top-24 sm:top-20"
+      >
+        <Favorite />
       </Modal>
     </header>
   );

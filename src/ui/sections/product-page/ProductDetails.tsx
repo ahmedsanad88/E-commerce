@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
 import { MdAddShoppingCart, MdOutlineFavoriteBorder } from 'react-icons/md';
 
-import { addToCart } from '@/redux/slices/cartSlice';
+import { addToCart } from '@/redux/slices/cart-slice/cartSlice';
+import { addToFavorite } from '@/redux/slices/fav-slice/favSlice';
 import { useDispatch } from '@/redux/store';
 import PriceDiscount from '@/ui/components/PriceDiscount';
 import RatingStar from '@/ui/components/RatingStar';
@@ -67,6 +68,18 @@ const ProductDetails = ({
         price,
         image,
         count: numOfUnits,
+      })
+    );
+  };
+
+  const addFavItem = () => {
+    dispatch(
+      addToFavorite({
+        id: title,
+        title,
+        subTitle,
+        price,
+        image,
       })
     );
   };
@@ -157,7 +170,12 @@ const ProductDetails = ({
           <MdAddShoppingCart className="group-hover:animate-bounce" />
           <p>Add To Cart</p>
         </button>
-        <button className="group flex h-[44px] flex-1 items-center justify-center gap-2 rounded-md border-2 border-[#1B4B66] text-[#1B4B66]">
+        <button
+          className="group flex h-[44px] flex-1 items-center justify-center gap-2 rounded-md border-2 border-[#1B4B66] text-[#1B4B66]"
+          onClick={() => {
+            addFavItem();
+          }}
+        >
           <MdOutlineFavoriteBorder className="group-hover:animate-ping" />
           <p>Add To Favorite</p>
         </button>

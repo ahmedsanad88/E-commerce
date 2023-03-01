@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
+import type { ICartSliceInitialState } from '@/redux/slices/cart-slice/cartSlice';
 import { useSelector } from '@/redux/store';
 import ProductCard from '@/ui/sections/cart/cart-page/ProductCard';
 

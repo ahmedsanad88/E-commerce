@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
+import type { ICartSliceInitialState } from '@/redux/slices/cart-slice/cartSlice';
 import { useSelector } from '@/redux/store';
 
 const OrderSummary = () => {

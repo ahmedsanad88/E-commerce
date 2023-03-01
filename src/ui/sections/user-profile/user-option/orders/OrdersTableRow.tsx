@@ -45,7 +45,7 @@ const OrdersTableRow = ({
       </td>
       <td className="px-6 py-4">
         <Link
-          href={`/orders/${orderId.replace('#', '')}`}
+          href={`/user-profile/my-orders/${orderId.replace('#', '')}`}
           className="text-2xl text-blue-600"
         >
           <MdArrowForwardIos />

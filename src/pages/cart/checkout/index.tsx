@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
-import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
+import PageNesting from '@/ui/components/PageNesting';
 import AddressForm from '@/ui/sections/cart/cart-page/checkout/AddressForm';
 import OrdersSummary from '@/ui/sections/cart/cart-page/checkout/OrdersSummary';
 import PaymentForm from '@/ui/sections/cart/cart-page/checkout/PaymentForm';
@@ -24,11 +24,12 @@ const Address = () => {
       }
     >
       <div className="min-h-screen">
-        <div className="my-6 flex w-full items-center gap-4 text-center font-medium text-black lg:text-left">
+        {/* <div className="my-6 flex w-full items-center gap-4 text-center font-medium text-black lg:text-left">
           <span className="text-[#1B4B66]">Home</span>
           <MdKeyboardArrowRight className="text-2xl" />
           <span className="text-[#1B4B66]">Checkout</span>
-        </div>
+        </div> */}
+        <PageNesting category="My Cart" data={['Checkout']} />
         <h2 className="mb-8 text-[34px] font-semibold text-[#1B4B66]">
           My Cart
         </h2>

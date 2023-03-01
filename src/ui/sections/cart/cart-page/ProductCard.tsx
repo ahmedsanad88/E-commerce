@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 
-import type { ICartSliceInitialState } from '@/redux/slices/cartSlice';
-import { removeFromCart } from '@/redux/slices/cartSlice';
+import type { ICartSliceInitialState } from '@/redux/slices/cart-slice/cartSlice';
+import { removeFromCart } from '@/redux/slices/cart-slice/cartSlice';
 import { useDispatch } from '@/redux/store';
 
 interface IProductCardProps extends ICartSliceInitialState {

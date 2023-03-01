@@ -1,10 +1,11 @@
 import type { StaticImageData } from 'next/image';
-import { MdKeyboardArrowRight } from 'react-icons/md';
+import { useRouter } from 'next/router';
 
 import { Meta } from '@/layouts/Meta';
 import cat1 from '@/public/assets/images/cat1.png';
 import { Main } from '@/templates/Main';
 import ImageSwiper from '@/ui/components/ImageSwiper';
+import PageNesting from '@/ui/components/PageNesting';
 import ProductDesc from '@/ui/sections/product-page/ProductDesc';
 import ProductDetails from '@/ui/sections/product-page/ProductDetails';
 
@@ -31,16 +32,26 @@ Eget est vel sagittis amet sit eu eu ullamcorper tellus. Leo mauris, faucibus vu
 };
 
 const ProductPage = () => {
+  const router = useRouter();
+  const { categoryType, productid } = router.query;
   return (
     <Main meta={<Meta title="Product A" description="Product description" />}>
       <div className="min-h-screen">
-        <div className="my-6 flex w-full items-center gap-4 text-center font-medium text-black lg:text-left">
+        {/* <div className="my-6 flex w-full items-center gap-4 text-center font-medium text-black lg:text-left">
           <span className="text-[#1B4B66]">Home</span>
           <MdKeyboardArrowRight className="text-2xl" />
           <span className="text-[#1B4B66]">Handbag</span>
           <MdKeyboardArrowRight className="text-2xl" />
           <span className="text-[#626262]">bag</span>
-        </div>
+        </div> */}
+        {categoryType &&
+        productid &&
+        categoryType.constructor === String &&
+        productid.constructor === String ? (
+          <PageNesting category="category" data={[categoryType, productid]} />
+        ) : (
+          <PageNesting category="category" />
+        )}
         <div className="mb-12 flex flex-col gap-6 xl:flex-row">
           <ImageSwiper />
           <div className="flex-1">

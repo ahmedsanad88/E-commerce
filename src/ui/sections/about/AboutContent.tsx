@@ -37,8 +37,11 @@ const AboutContent = () => {
           placeholder="blur"
         />
         <div className="absolute right-[20%] top-[50%] translate-y-[-50%] rounded-md p-4 backdrop-blur">
-          <h1 className="text-3xl font-semibold text-[#FF8C4B] sm:text-5xl">
-            About <span className="text-[#1B4B66]">Buy/2</span>
+          <h1 className="text-3xl font-semibold uppercase text-white/70 sm:text-5xl">
+            About{' '}
+            <span className="word-highlight relative z-10 text-[#1B4B66]">
+              Buy/2
+            </span>
           </h1>
         </div>
       </div>
