@@ -3,11 +3,11 @@ import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { SwiperSlide } from 'swiper/react';
 
-import type { INewArrivalCardProps } from '@/ui/components/NewArrivalCard';
+import type { IProductCardProps } from '@/ui/components/ProductCard';
 import ProductCard from '@/ui/components/ProductCard';
 import ProductsSlider from '@/ui/components/ProductsSlider';
 
-const product1: INewArrivalCardProps = {
+const product1: IProductCardProps = {
   title: 'Grande',
   category: 'Blossom Pouch',
   price: 39.49,

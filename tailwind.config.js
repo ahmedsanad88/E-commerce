@@ -42,6 +42,7 @@ module.exports = {
       },
       transitionProperty: {
         height: 'height',
+        width: 'width',
       },
       gridTemplateColumns: {
         products: 'repeat(auto-fit, minmax(290px, 1fr))',
@@ -63,6 +64,9 @@ module.exports = {
         'input-label': 'error 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1',
         'move-bar':
           'moveBar 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1 forwards',
+      },
+      screens: {
+        xs: '576px',
       },
     },
   },

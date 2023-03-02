@@ -8,18 +8,10 @@ import { addToFavorite } from '@/redux/slices/fav-slice/favSlice';
 import { useDispatch } from '@/redux/store';
 
 import PriceDiscount from './PriceDiscount';
+import type { IProductCardProps } from './ProductCard';
 import RatingStar from './RatingStar';
 
-export interface IProductCardProps {
-  title: string;
-  category: string;
-  price: number;
-  image: string;
-  rating?: number;
-  discount?: number;
-}
-
-const ProductCard = ({
+const WideProductCard = ({
   title,
   category,
   price,
@@ -58,32 +50,14 @@ const ProductCard = ({
 
   return (
     <div
-      className="group relative flex max-w-[450px] cursor-pointer flex-col gap-4 overflow-hidden lg:w-full"
+      className="relative flex w-full cursor-pointer flex-col items-center gap-4 overflow-hidden bg-gray-50 lg:flex-row"
       onClick={() =>
         router.push(
           `/category/${categoryType || category.replaceAll(' ', '')}/${title}`
         )
       }
     >
-      <div className="absolute top-2 right-2 flex flex-col gap-2">
-        <MdAddShoppingCart
-          className="translate-x-[150%] cursor-pointer rounded-full bg-[#13101E]/80 p-2 text-4xl text-white transition-transform duration-200 group-hover:translate-x-0"
-          aria-label="Add to Cart"
-          onClick={(e) => {
-            e.stopPropagation();
-            addItem();
-          }}
-        />
-        <MdOutlineFavoriteBorder
-          className="translate-x-[150%] cursor-pointer rounded-full bg-[#13101E]/80 p-2 text-4xl text-white transition-transform delay-100 duration-200 group-hover:translate-x-0"
-          aria-label="Add to Favorite"
-          onClick={(e) => {
-            e.stopPropagation();
-            addFavItem();
-          }}
-        />
-      </div>
-      <div className="h-full w-full">
+      <div className="h-[286px] w-[286px]">
         <Image
           src={image}
           alt={title}
@@ -110,9 +84,40 @@ const ProductCard = ({
             <p className="font-semibold">{`$ ${price.toFixed(3)}`}</p>
           </div>
         )}
+        <div className="flex flex-col gap-2">
+          <div
+            // eslint-disable-next-line tailwindcss/no-custom-classname
+            className="group/cart flex h-fit w-fit cursor-pointer items-center justify-center gap-2 rounded-full bg-[#13101E]/80 py-2 px-4 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              addItem();
+            }}
+          >
+            <MdAddShoppingCart className="text-2xl" aria-label="Add to Cart" />
+            <p className="w-0 whitespace-nowrap font-medium capitalize opacity-0 transition-width duration-300 group-hover/cart:w-[105px] group-hover/cart:opacity-100">
+              Add to cart
+            </p>
+          </div>
+          <div
+            // eslint-disable-next-line tailwindcss/no-custom-classname
+            className="group/fav flex h-fit w-fit cursor-pointer items-center justify-center gap-2 rounded-full bg-[#13101E]/80 py-2 px-4 text-white"
+            onClick={(e) => {
+              e.stopPropagation();
+              addFavItem();
+            }}
+          >
+            <MdOutlineFavoriteBorder
+              className="text-2xl"
+              aria-label="Add to Favorite"
+            />
+            <p className="w-0 whitespace-nowrap font-medium capitalize opacity-0 transition-width duration-300 group-hover/fav:w-[135px] group-hover/fav:opacity-100">
+              Add to Favorite
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ProductCard;
+export default WideProductCard;

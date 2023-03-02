@@ -5,6 +5,7 @@ import { FaThList } from 'react-icons/fa';
 import Pagination from '@/ui/components/Pagination';
 import type { IProductCardProps } from '@/ui/components/ProductCard';
 import ProductCard from '@/ui/components/ProductCard';
+import WideProductCard from '@/ui/components/WideProductCard';
 
 const product1: IProductCardProps = {
   title: 'Grande',
@@ -70,10 +71,20 @@ const ProductsList = () => {
       </div>
       {/* grid grid-cols-products gap-x-8 gap-y-16 */}
       {/* flex flex-wrap items-start justify-between gap-x-8 gap-y-16 */}
-      <div className="grid grid-cols-products justify-items-center gap-x-8 gap-y-16">
-        {[...new Array(10)].map((_, i) => (
-          <ProductCard {...product1} key={i} />
-        ))}
+      <div
+        className={`grid justify-items-center ${
+          isGridList
+            ? 'grid-cols-products gap-x-8 gap-y-16'
+            : 'grid-cols-1 gap-y-8'
+        }`}
+      >
+        {[...new Array(10)].map((_, i) =>
+          isGridList ? (
+            <ProductCard {...product1} key={i} />
+          ) : (
+            <WideProductCard {...product1} key={i} />
+          )
+        )}
       </div>
 
       <Pagination data={[...new Array(5)]} />

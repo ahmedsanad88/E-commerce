@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';

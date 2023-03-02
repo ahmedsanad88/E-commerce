@@ -51,7 +51,7 @@ a:hover {
 }
 
 .mySwiper3 .swiper-slide img {
-  @apply h-[50px] w-[50px] sm:h-[75px] sm:w-[75px] aspect-square rounded
+  @apply h-[45px] w-[45px] xs:h-[75px] xs:w-[75px] aspect-square rounded
 }
 
 .credit-card {
