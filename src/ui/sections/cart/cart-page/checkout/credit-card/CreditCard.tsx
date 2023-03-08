@@ -34,7 +34,7 @@ interface Cvv {
 
 const CVVSchema = Yup.object().shape({
   cvv: Yup.string()
-    .matches(/[0-9]{16}/g, 'Must used numbers only')
+    .matches(/[0-9]{3}/g, 'Must used numbers only')
     .length(3, 'CVV should be 3 numbers only')
     .required('Must provide card CVV!'),
 });

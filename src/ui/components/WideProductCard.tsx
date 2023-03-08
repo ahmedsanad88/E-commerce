@@ -87,7 +87,7 @@ const WideProductCard = ({
         <div className="flex flex-col gap-2">
           <div
             // eslint-disable-next-line tailwindcss/no-custom-classname
-            className="group/cart flex h-fit w-fit cursor-pointer items-center justify-center gap-2 rounded-full bg-[#13101E]/80 py-2 px-4 text-white"
+            className="group/cart flex h-fit w-fit cursor-pointer items-center justify-center rounded-full bg-[#13101E]/80 py-2 px-4 text-white hover:gap-2"
             onClick={(e) => {
               e.stopPropagation();
               addItem();
@@ -100,7 +100,7 @@ const WideProductCard = ({
           </div>
           <div
             // eslint-disable-next-line tailwindcss/no-custom-classname
-            className="group/fav flex h-fit w-fit cursor-pointer items-center justify-center gap-2 rounded-full bg-[#13101E]/80 py-2 px-4 text-white"
+            className="group/fav flex h-fit w-fit cursor-pointer items-center justify-center rounded-full bg-[#13101E]/80 py-2 px-4 text-white hover:gap-2"
             onClick={(e) => {
               e.stopPropagation();
               addFavItem();

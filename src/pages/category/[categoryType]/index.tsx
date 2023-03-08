@@ -1,3 +1,4 @@
+import type { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 
 import { Meta } from '@/layouts/Meta';
@@ -8,6 +9,26 @@ import SubBanner from '@/ui/components/SubBanner';
 import FilterOptions from '@/ui/sections/category-page/FilterOptions';
 import ProductsList from '@/ui/sections/category-page/ProductsList';
 
+interface IProductReal {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+
+/**
+ * 
+ * {
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>
+ */
 const Categories = () => {
   const router = useRouter();
   const { categoryType } = router.query;
@@ -53,3 +74,18 @@ const Categories = () => {
 };
 
 export default Categories;
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const { categoryType } = ctx.query;
+  if (!categoryType) {
+    return {
+      props: { data: [] },
+    };
+  }
+  const res = await fetch(`http://localhost:3000/api/category/fragrances`);
+  const data: IProductReal[] = await res.json();
+
+  return {
+    props: { data },
+  };
+}

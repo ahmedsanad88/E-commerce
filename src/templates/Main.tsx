@@ -13,7 +13,7 @@ const Main = (props: IMainProps) => (
   <div className="flex w-full justify-center bg-white antialiased">
     {props.meta}
     <div className="w-full max-w-[1920px]">
-      <div className="fixed top-0 z-[999] w-full">
+      <div className="fixed top-0 z-[999] mx-auto w-full max-w-[1920px]">
         <Navbar />
         <Alert />
       </div>
