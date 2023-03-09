@@ -12,12 +12,13 @@ import type { IProductCardProps } from './ProductCard';
 import RatingStar from './RatingStar';
 
 const WideProductCard = ({
+  id,
   title,
   category,
   price,
-  image,
+  thumbnail,
   rating,
-  discount,
+  discountPercentage,
 }: IProductCardProps) => {
   const router = useRouter();
   const { categoryType } = router.query;
@@ -26,11 +27,11 @@ const WideProductCard = ({
   const addItem = () => {
     dispatch(
       addToCart({
-        id: title,
+        id,
         title,
         subTitle: category,
         price,
-        image,
+        image: thumbnail,
         count: 1,
       })
     );
@@ -39,11 +40,11 @@ const WideProductCard = ({
   const addFavItem = () => {
     dispatch(
       addToFavorite({
-        id: title,
+        id,
         title,
         subTitle: category,
         price,
-        image,
+        image: thumbnail,
       })
     );
   };
@@ -59,11 +60,11 @@ const WideProductCard = ({
     >
       <div className="h-[286px] w-[286px]">
         <Image
-          src={image}
+          src={thumbnail}
           alt={title}
           placeholder="blur"
           className="aspect-square w-full rounded-lg shadow-md"
-          blurDataURL={image}
+          blurDataURL={thumbnail}
           width={286}
           height={286}
         />
@@ -77,8 +78,8 @@ const WideProductCard = ({
           <p>{category}</p>
           {rating && <RatingStar rate={rating} />}
         </div>
-        {discount ? (
-          <PriceDiscount price={price} discount={discount} />
+        {discountPercentage ? (
+          <PriceDiscount price={price} discount={discountPercentage} />
         ) : (
           <div className="flex items-center gap-2">
             <p className="font-semibold">{`$ ${price.toFixed(3)}`}</p>

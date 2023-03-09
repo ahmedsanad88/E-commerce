@@ -7,13 +7,17 @@ import 'swiper/css/pagination';
 import '../styles/global.css';
 
 import type { AppProps } from 'next/app';
+import { Suspense } from 'react';
 import { Provider } from 'react-redux';
 
 import { store } from '@/redux/store';
+import Loader from '@/ui/components/Loader';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <Provider store={store}>
-    <Component {...pageProps} />
+    <Suspense fallback={<Loader />}>
+      <Component {...pageProps} />
+    </Suspense>
   </Provider>
 );
 

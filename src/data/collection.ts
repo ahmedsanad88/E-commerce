@@ -13,19 +13,19 @@ export const collections: {
 }[] = [
   {
     alt: 'Personal Care',
-    image: cat1,
-  },
-  {
-    alt: 'Handbags',
     image: cat2,
   },
   {
+    alt: 'Handbags',
+    image: cat1,
+  },
+  {
     alt: 'Wrist Watches',
-    image: cat3,
+    image: cat4,
   },
   {
     alt: 'Sun Glasses',
-    image: cat4,
+    image: cat3,
   },
   {
     alt: 'Jewelry',

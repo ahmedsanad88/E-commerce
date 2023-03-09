@@ -29,8 +29,8 @@ const SubBanner = ({
     <div className="relative w-full overflow-hidden rounded-xl xl:h-[400px]">
       <Image
         src={image}
+        priority
         alt="banner"
-        placeholder="blur"
         className={`min-h-[250px] w-full object-cover ${
           isImageRight ? 'object-right' : 'object-left'
         }`}

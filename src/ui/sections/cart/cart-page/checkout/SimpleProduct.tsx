@@ -1,11 +1,10 @@
-import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import React from 'react';
 
 interface ISimpleProductProps {
   title: string;
   subTitle: string;
-  image: string | StaticImageData;
+  image: string;
   quantity: number;
 }
 
@@ -24,7 +23,7 @@ const SimpleProduct = ({
             alt={title}
             placeholder="blur"
             className="aspect-square rounded-lg shadow"
-            blurDataURL={title}
+            blurDataURL={image}
             width={120}
             height={120}
           />

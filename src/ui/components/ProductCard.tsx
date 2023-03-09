@@ -10,22 +10,32 @@ import { useDispatch } from '@/redux/store';
 import PriceDiscount from './PriceDiscount';
 import RatingStar from './RatingStar';
 
+// export interface IProductCardProps {
+//   title: string;
+//   category: string;
+//   price: number;
+//   image: string;
+//   rating?: number;
+//   discount?: number;
+// }
 export interface IProductCardProps {
+  id: number;
   title: string;
   category: string;
   price: number;
-  image: string;
+  thumbnail: string;
   rating?: number;
-  discount?: number;
+  discountPercentage?: number;
 }
 
 const ProductCard = ({
+  id,
   title,
   category,
   price,
-  image,
+  thumbnail,
   rating,
-  discount,
+  discountPercentage,
 }: IProductCardProps) => {
   const router = useRouter();
   const { categoryType } = router.query;
@@ -34,11 +44,11 @@ const ProductCard = ({
   const addItem = () => {
     dispatch(
       addToCart({
-        id: title,
+        id,
         title,
         subTitle: category,
         price,
-        image,
+        image: thumbnail,
         count: 1,
       })
     );
@@ -47,11 +57,11 @@ const ProductCard = ({
   const addFavItem = () => {
     dispatch(
       addToFavorite({
-        id: title,
+        id,
         title,
         subTitle: category,
         price,
-        image,
+        image: thumbnail,
       })
     );
   };
@@ -85,11 +95,11 @@ const ProductCard = ({
       </div>
       <div className="h-full w-full">
         <Image
-          src={image}
+          src={thumbnail}
           alt={title}
           placeholder="blur"
           className="aspect-square w-full rounded-lg shadow-md"
-          blurDataURL={image}
+          blurDataURL={thumbnail}
           width={286}
           height={286}
         />
@@ -103,8 +113,8 @@ const ProductCard = ({
           <p>{category}</p>
           {rating && <RatingStar rate={rating} />}
         </div>
-        {discount ? (
-          <PriceDiscount price={price} discount={discount} />
+        {discountPercentage ? (
+          <PriceDiscount price={price} discount={discountPercentage} />
         ) : (
           <div className="flex items-center gap-2">
             <p className="font-semibold">{`$ ${price.toFixed(3)}`}</p>

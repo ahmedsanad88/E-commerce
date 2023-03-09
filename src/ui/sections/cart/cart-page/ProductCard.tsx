@@ -29,7 +29,7 @@ const ProductCard = ({
               alt={title}
               placeholder="blur"
               className="aspect-square rounded-lg shadow"
-              blurDataURL={title}
+              blurDataURL={image}
               width={100}
               height={100}
             />
@@ -73,7 +73,7 @@ const ProductCard = ({
               alt={title}
               placeholder="blur"
               className="aspect-square rounded-lg shadow"
-              blurDataURL={title}
+              blurDataURL={image}
               width={130}
               height={130}
             />

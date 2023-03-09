@@ -30,12 +30,7 @@ const AboutContent = () => {
   return (
     <div className="flex w-full flex-col gap-10">
       <div className="relative w-full">
-        <Image
-          src={aboutBanner}
-          alt="about banner"
-          className="h-auto w-full"
-          placeholder="blur"
-        />
+        <Image src={aboutBanner} alt="about banner" className="h-auto w-full" />
         <div className="absolute right-[20%] top-[50%] translate-y-[-50%] rounded-md p-4 backdrop-blur">
           <h1 className="text-3xl font-semibold uppercase text-white/70 sm:text-5xl">
             About{' '}

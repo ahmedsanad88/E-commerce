@@ -1,14 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import type { Draft, PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import type { StaticImageData } from 'next/image';
 
 export interface IFavSliceInitialState {
-  id: string;
+  id: number;
   title: string;
   subTitle: string;
   price: number;
-  image: string | StaticImageData;
+  image: string;
 }
 
 const initialState: { data: IFavSliceInitialState[] } = {
@@ -40,7 +39,7 @@ const favSlice = createSlice({
     },
     removeFromFavorite: (
       state: Draft<typeof initialState>,
-      action: PayloadAction<string>
+      action: PayloadAction<number>
     ) => {
       // eslint-disable-next-line no-param-reassign
       state.data = state.data.filter(

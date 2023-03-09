@@ -42,7 +42,7 @@ const CartProductTemplate = ({
           alt={title}
           placeholder="blur"
           className="aspect-square rounded-lg shadow"
-          blurDataURL={title}
+          blurDataURL={image}
           width={100}
           height={100}
         />

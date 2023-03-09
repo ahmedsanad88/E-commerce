@@ -7,17 +7,21 @@ import type { IProductCardProps } from '@/ui/components/ProductCard';
 import ProductCard from '@/ui/components/ProductCard';
 import WideProductCard from '@/ui/components/WideProductCard';
 
-const product1: IProductCardProps = {
-  title: 'Grande',
-  category: 'Blossom Pouch',
-  price: 39.49,
-  image:
-    'https://cdnd.lystit.com/photos/99ad-2014/03/25/fendi-black-2jours-grande-shopping-bag-product-1-18679366-1-477799868-normal.jpeg',
-  rating: 4.3,
-  discount: 20,
-};
+// const product1: IProductCardProps = {
+//   title: 'Grande',
+//   category: 'Blossom Pouch',
+//   price: 39.49,
+//   image:
+//     'https://cdnd.lystit.com/photos/99ad-2014/03/25/fendi-black-2jours-grande-shopping-bag-product-1-18679366-1-477799868-normal.jpeg',
+//   rating: 4.3,
+//   discount: 20,
+// };
 
-const ProductsList = () => {
+interface IProductsListProps {
+  products: IProductCardProps[];
+}
+
+const ProductsList = ({ products }: IProductsListProps) => {
   const [isGridList, setIsGridList] = useState(true);
 
   return (
@@ -78,13 +82,14 @@ const ProductsList = () => {
             : 'grid-cols-1 gap-y-8'
         }`}
       >
-        {[...new Array(10)].map((_, i) =>
-          isGridList ? (
-            <ProductCard {...product1} key={i} />
-          ) : (
-            <WideProductCard {...product1} key={i} />
-          )
-        )}
+        {products.length &&
+          products.map((product, i) =>
+            isGridList ? (
+              <ProductCard {...product} key={i} />
+            ) : (
+              <WideProductCard {...product} key={i} />
+            )
+          )}
       </div>
 
       <Pagination data={[...new Array(5)]} />

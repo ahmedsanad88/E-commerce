@@ -8,10 +8,11 @@ import ProductCard from '@/ui/components/ProductCard';
 import ProductsSlider from '@/ui/components/ProductsSlider';
 
 const product1: IProductCardProps = {
+  id: 1111,
   title: 'Grande',
   category: 'Blossom Pouch',
   price: 39.49,
-  image:
+  thumbnail:
     'https://cdnd.lystit.com/photos/99ad-2014/03/25/fendi-black-2jours-grande-shopping-bag-product-1-18679366-1-477799868-normal.jpeg',
 };
 

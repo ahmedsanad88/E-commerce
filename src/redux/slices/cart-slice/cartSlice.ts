@@ -1,14 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import type { Draft, PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import type { StaticImageData } from 'next/image';
 
 export interface ICartSliceInitialState {
-  id: string;
+  id: number;
   title: string;
   subTitle: string;
   price: number;
-  image: string | StaticImageData;
+  image: string;
   count: number;
 }
 
@@ -48,11 +47,11 @@ const cartSlice = createSlice({
     },
     removeFromCart: (
       state: Draft<typeof initialState>,
-      action: PayloadAction<string>
+      action: PayloadAction<number>
     ) => {
       // eslint-disable-next-line no-param-reassign
       state.data = state.data.filter(
-        (item, _idx) => item.id !== action.payload
+        (item, _idx) => item.id !== +action.payload
       );
     },
     clearCart: (state: Draft<typeof initialState>) => {
@@ -61,13 +60,13 @@ const cartSlice = createSlice({
     },
     removeOneProduct: (
       state: Draft<typeof initialState>,
-      action: PayloadAction<string>
+      action: PayloadAction<number>
     ) => {
       // eslint-disable-next-line no-param-reassign
       state.data = state.data.filter((item, _idx) => {
-        if (item.id === action.payload) {
+        if (item.id === +action.payload) {
           if (item.count <= 1) {
-            return item.id !== action.payload;
+            return item.id !== +action.payload;
           }
           // eslint-disable-next-line no-param-reassign
           item.count -= 1;

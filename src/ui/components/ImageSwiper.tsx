@@ -22,22 +22,22 @@ export default function ImageSwiper() {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <Image src={cat1} alt="product" priority placeholder="blur" />
+          <Image src={cat1} alt="product" priority />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat2} alt="product" loading="lazy" placeholder="blur" />
+          <Image src={cat2} alt="product" loading="lazy" />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat3} alt="product" loading="lazy" placeholder="blur" />
+          <Image src={cat3} alt="product" loading="lazy" />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat1} alt="product" priority placeholder="blur" />
+          <Image src={cat1} alt="product" priority />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat2} alt="product" loading="lazy" placeholder="blur" />
+          <Image src={cat2} alt="product" loading="lazy" />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat3} alt="product" loading="lazy" placeholder="blur" />
+          <Image src={cat3} alt="product" loading="lazy" />
         </SwiperSlide>
       </SWMain>
       {/* 2nd Swiper */}
@@ -51,22 +51,22 @@ export default function ImageSwiper() {
         className="mySwiper3"
       >
         <SwiperSlide>
-          <Image src={cat1} alt="product" priority placeholder="blur" />
+          <Image src={cat1} alt="product" priority />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat2} alt="product" priority placeholder="blur" />
+          <Image src={cat2} alt="product" priority />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat3} alt="product" priority placeholder="blur" />
+          <Image src={cat3} alt="product" priority />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat1} alt="product" priority placeholder="blur" />
+          <Image src={cat1} alt="product" priority />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat2} alt="product" priority placeholder="blur" />
+          <Image src={cat2} alt="product" priority />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cat3} alt="product" priority placeholder="blur" />
+          <Image src={cat3} alt="product" priority />
         </SwiperSlide>
       </SWMain>
     </div>

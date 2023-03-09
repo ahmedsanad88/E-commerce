@@ -55,7 +55,6 @@ const CreditCard = () => {
               <Image
                 src={master}
                 alt="master card"
-                placeholder="blur"
                 width={50}
                 height={50}
                 className="h-[50px] w-[50px] object-contain"
@@ -63,7 +62,6 @@ const CreditCard = () => {
               <Image
                 src={visa}
                 alt="visa card"
-                placeholder="blur"
                 width={50}
                 height={50}
                 className="h-[50px] w-[50px] object-contain"
@@ -81,7 +79,6 @@ const CreditCard = () => {
                 <Image
                   src={chip}
                   alt="chip"
-                  placeholder="blur"
                   width={80}
                   height={58}
                   className="h-[58px] w-[80px] object-cover"
@@ -89,7 +86,6 @@ const CreditCard = () => {
                 <Image
                   src={connection}
                   alt="connection icon"
-                  placeholder="blur"
                   width={39}
                   height={50}
                   className="h-[50px] w-[39px] object-cover"

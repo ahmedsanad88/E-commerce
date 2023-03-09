@@ -21,7 +21,6 @@ const AboutDetails = ({ heading, text, image, direction }: IAboutDetails) => {
           src={image}
           alt="about banner"
           className="h-full w-full object-cover object-center"
-          placeholder="blur"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
       </div>

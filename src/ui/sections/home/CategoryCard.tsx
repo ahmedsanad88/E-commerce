@@ -23,7 +23,6 @@ const CategoryCard = ({
       <Image
         src={image}
         alt="banner"
-        placeholder="blur"
         className="min-h-[230px] w-full object-cover object-left"
       />
       <div className="absolute right-4 top-[50%] flex translate-y-[-50%] flex-col items-end px-2 py-4 backdrop-blur-sm md:backdrop-blur-none">

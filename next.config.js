@@ -15,6 +15,11 @@ module.exports = withBundleAnalyzer({
   // You can remove `basePath` if you don't need it.
   reactStrictMode: true,
   images: {
-    domains: ['cdnd.lystit.com', 'dummyimage.com', 'drive.google.com'],
+    domains: [
+      'cdnd.lystit.com',
+      'dummyimage.com',
+      'drive.google.com',
+      'i.dummyjson.com',
+    ],
   },
 });

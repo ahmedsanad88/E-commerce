@@ -10,8 +10,8 @@ const Banner = () => {
       <Image
         src={banner}
         alt="banner"
-        placeholder="blur"
         className="h-auto w-full object-cover object-left"
+        priority
       />
       <div className="absolute right-[50%] top-[50%] h-full w-full translate-x-[50%] translate-y-[-50%] rounded-l-xl bg-[#DEDEDE]/70 p-8 text-[#1B4B66] sm:h-fit sm:w-[600px] xl:right-[-10px] xl:translate-x-0">
         <h2 className="text-3xl font-bold sm:text-6xl">Carry Your Funk</h2>

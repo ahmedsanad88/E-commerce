@@ -14,9 +14,7 @@ const CollectionCard = ({ image, alt }: ICollectionCardProps) => {
         <Image
           src={image}
           alt={alt}
-          placeholder="blur"
           className="aspect-square"
-          // blurDataURL={image}
           width={280}
           height={280}
         />

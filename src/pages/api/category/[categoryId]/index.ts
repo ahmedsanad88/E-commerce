@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+import { allCategories } from '@/data/apiCategories';
 import { getCategoryData } from '@/global/server/category/getCategoryData';
 
 export default async function handler(
@@ -12,7 +13,10 @@ export default async function handler(
 
   const { categoryId } = req.query;
 
-  const cateData = await getCategoryData(categoryId as string);
+  const chosenCategory: string =
+    allCategories[categoryId as keyof typeof allCategories];
+
+  const cateData = await getCategoryData(chosenCategory);
 
   res.status(200).json(cateData.products);
 }

@@ -23,7 +23,7 @@ const FavTemplateCard = ({
           alt={title}
           placeholder="blur"
           className="aspect-square rounded-lg drop-shadow-lg"
-          blurDataURL={title}
+          blurDataURL={image}
           width={100}
           height={100}
         />
