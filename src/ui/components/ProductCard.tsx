@@ -58,7 +58,7 @@ const ProductCard = ({
         )
       }
     >
-      <div className="absolute top-2 right-2 flex flex-col gap-2">
+      <div className="absolute top-2 right-2 z-10 flex flex-col gap-2">
         <MdAddShoppingCart
           className="translate-x-[150%] cursor-pointer rounded-full bg-[#13101E]/80 p-2 text-4xl text-white transition-transform duration-200 group-hover:translate-x-0"
           aria-label="Add to Cart"
@@ -76,12 +76,12 @@ const ProductCard = ({
           }}
         />
       </div>
-      <div className="h-full w-full">
+      <div className="z-0 h-full w-full">
         <Image
           src={thumbnail}
           alt={title}
           placeholder="blur"
-          className="aspect-square w-full rounded-lg shadow-md"
+          className="aspect-square w-full rounded-lg shadow-md group-hover:blur-sm"
           blurDataURL={thumbnail}
           width={286}
           height={286}

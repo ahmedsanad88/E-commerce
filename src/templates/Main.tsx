@@ -18,7 +18,7 @@ const Main = (props: IMainProps) => (
         <Alert />
       </div>
       {/* max-w-[95%] */}
-      <div className="mx-auto mt-[136px] px-5">
+      <div className="mx-auto mt-[230px] px-5">
         <main className="py-5 text-xl">{props.children}</main>
       </div>
       <Footer />

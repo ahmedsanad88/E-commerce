@@ -38,7 +38,7 @@ const ProductPage = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Main meta={<Meta title="Product A" description="Product description" />}>
-      <div className="mt-16 min-h-screen">
+      <div className="min-h-screen">
         {/* <div className="my-6 flex w-full items-center gap-4 text-center font-medium text-black lg:text-left">
           <span className="text-[#1B4B66]">Home</span>
           <MdKeyboardArrowRight className="text-2xl" />
