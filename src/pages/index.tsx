@@ -1,5 +1,8 @@
 // import { useRouter } from 'next/router';
 
+import type { InferGetServerSidePropsType } from 'next';
+
+import type { IProduct } from '@/global/interfaces/products/products';
 import { Meta } from '@/layouts/Meta';
 import cream from '@/public/assets/images/cream.png';
 import girl from '@/public/assets/images/girl.png';
@@ -12,7 +15,9 @@ import CategoryCard from '@/ui/sections/home/CategoryCard';
 import Collections from '@/ui/sections/home/Collections';
 import NewArrivals from '@/ui/sections/home/NewArrivals';
 
-const Index = () => {
+const Index = ({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   // const router = useRouter();
 
   return (
@@ -25,7 +30,7 @@ const Index = () => {
       }
     >
       <Banner />
-      <NewArrivals />
+      <NewArrivals products={data} />
       <Collections />
       <Brands />
       <div className="flex w-full flex-col gap-10">
@@ -61,3 +66,15 @@ const Index = () => {
 };
 
 export default Index;
+
+export async function getServerSideProps() {
+  const arrOfCategories = ['fragrances', 'tops', 'womens-shoes'];
+  const randomCate = arrOfCategories[Math.round(Math.random() * 2)];
+
+  const res = await fetch(`http://localhost:3000/api/category/${randomCate}`);
+  const data: IProduct[] = await res.json();
+
+  return {
+    props: { data },
+  };
+}

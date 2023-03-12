@@ -1,42 +1,44 @@
-import type { StaticImageData } from 'next/image';
-import { useRouter } from 'next/router';
+import type {
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+} from 'next';
 
+import type { IProduct } from '@/global/interfaces/products/products';
 import { Meta } from '@/layouts/Meta';
-import cat1 from '@/public/assets/images/cat1.png';
 import { Main } from '@/templates/Main';
 import ImageSwiper from '@/ui/components/ImageSwiper';
 import PageNesting from '@/ui/components/PageNesting';
 import ProductDesc from '@/ui/sections/product-page/ProductDesc';
 import ProductDetails from '@/ui/sections/product-page/ProductDetails';
 
-const productA: {
-  title: string;
-  subTitle: string;
-  stars: number;
-  price: number;
-  discount: number;
-  desc: string;
-  image: StaticImageData | string;
-} = {
-  title: 'Coach',
-  subTitle: 'Leather Coach Bag with adjustable starps.',
-  stars: 4,
-  price: 54.69,
-  discount: 50,
-  desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus scelerisque laoreet tortor cras molestie tincidunt malesuada malesuada. Neque, mauris duis dui id morbi magna. Cras lacus, viverra auctor in turpis est quisque eget tristique. 
+// const productA: {
+//   title: string;
+//   subTitle: string;
+//   stars: number;
+//   price: number;
+//   discount: number;
+//   desc: string;
+//   image: StaticImageData | string;
+// } = {
+//   title: 'Coach',
+//   subTitle: 'Leather Coach Bag with adjustable starps.',
+//   stars: 4,
+//   price: 54.69,
+//   discount: 50,
+//   desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus scelerisque laoreet tortor cras molestie tincidunt malesuada malesuada. Neque, mauris duis dui id morbi magna. Cras lacus, viverra auctor in turpis est quisque eget tristique.
 
-Dolor augue mattis duis semper gravida enim eu imperdiet sit. Et pharetra platea pretium nec feugiat tincidunt quam leo tristique. Nulla enim consectetur sit et tempus, faucibus leo ac cras. Purus ut non eu mus volutpat. 
+// Dolor augue mattis duis semper gravida enim eu imperdiet sit. Et pharetra platea pretium nec feugiat tincidunt quam leo tristique. Nulla enim consectetur sit et tempus, faucibus leo ac cras. Purus ut non eu mus volutpat.
 
-Eget est vel sagittis amet sit eu eu ullamcorper tellus. Leo mauris, faucibus vulputate adipiscing elementum tristique dictumst augue pellentesque. Justo, sed nunc, pretium turpis scelerisque. Enim urna etiam morbi vestibulum ac dictumst. Ac ut elementum molestie sit felis imperdiet.`,
-  image: cat1,
-};
+// Eget est vel sagittis amet sit eu eu ullamcorper tellus. Leo mauris, faucibus vulputate adipiscing elementum tristique dictumst augue pellentesque. Justo, sed nunc, pretium turpis scelerisque. Enim urna etiam morbi vestibulum ac dictumst. Ac ut elementum molestie sit felis imperdiet.`,
+//   image: cat1,
+// };
 
-const ProductPage = () => {
-  const router = useRouter();
-  const { categoryType, productid } = router.query;
+const ProductPage = ({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Main meta={<Meta title="Product A" description="Product description" />}>
-      <div className="min-h-screen">
+      <div className="mt-16 min-h-screen">
         {/* <div className="my-6 flex w-full items-center gap-4 text-center font-medium text-black lg:text-left">
           <span className="text-[#1B4B66]">Home</span>
           <MdKeyboardArrowRight className="text-2xl" />
@@ -44,23 +46,20 @@ const ProductPage = () => {
           <MdKeyboardArrowRight className="text-2xl" />
           <span className="text-[#626262]">bag</span>
         </div> */}
-        {categoryType &&
-        productid &&
-        categoryType.constructor === String &&
-        productid.constructor === String ? (
-          <PageNesting category="category" data={[categoryType, productid]} />
+        {data.category && data.title ? (
+          <PageNesting category="category" data={[data.category, data.title]} />
         ) : (
           <PageNesting category="category" />
         )}
         <div className="mb-12 flex flex-col gap-6 xl:flex-row">
-          <ImageSwiper />
+          <ImageSwiper images={data.images} />
           <div className="flex-1">
-            <ProductDetails {...productA} />
+            <ProductDetails {...data} />
           </div>
         </div>
         <div>
           <ProductDesc
-            productDescription={productA.desc}
+            productDescription={data.description}
             relatedProducts="Related Products"
             reviews="Good Item"
           />
@@ -71,3 +70,18 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const { productid } = ctx.query;
+  if (!productid) {
+    return {
+      notFound: true,
+    };
+  }
+  const res = await fetch(`http://localhost:3000/api/product/${productid}`);
+  const data: IProduct = await res.json();
+
+  return {
+    props: { data },
+  };
+}

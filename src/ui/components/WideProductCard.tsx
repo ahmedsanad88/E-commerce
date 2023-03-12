@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { MdAddShoppingCart, MdOutlineFavoriteBorder } from 'react-icons/md';
 
+import type { IProduct } from '@/global/interfaces/products/products';
 import { addToCart } from '@/redux/slices/cart-slice/cartSlice';
 import { addToFavorite } from '@/redux/slices/fav-slice/favSlice';
 import { useDispatch } from '@/redux/store';
 
 import PriceDiscount from './PriceDiscount';
-import type { IProductCardProps } from './ProductCard';
 import RatingStar from './RatingStar';
 
 const WideProductCard = ({
@@ -19,7 +19,7 @@ const WideProductCard = ({
   thumbnail,
   rating,
   discountPercentage,
-}: IProductCardProps) => {
+}: IProduct) => {
   const router = useRouter();
   const { categoryType } = router.query;
   const dispatch = useDispatch();

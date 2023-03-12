@@ -3,20 +3,22 @@ import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { SwiperSlide } from 'swiper/react';
 
-import type { IProductCardProps } from '@/ui/components/ProductCard';
+// import type { IProductCardProps } from '@/ui/components/ProductCard';
 import ProductCard from '@/ui/components/ProductCard';
 import ProductsSlider from '@/ui/components/ProductsSlider';
 
-const product1: IProductCardProps = {
-  id: 1111,
-  title: 'Grande',
-  category: 'Blossom Pouch',
-  price: 39.49,
-  thumbnail:
-    'https://cdnd.lystit.com/photos/99ad-2014/03/25/fendi-black-2jours-grande-shopping-bag-product-1-18679366-1-477799868-normal.jpeg',
-};
+import type { IProductsListProps } from '../category-page/ProductsList';
 
-const NewArrivals = () => {
+// const product1: IProductCardProps = {
+//   id: 1111,
+//   title: 'Grande',
+//   category: 'Blossom Pouch',
+//   price: 39.49,
+//   thumbnail:
+//     'https://cdnd.lystit.com/photos/99ad-2014/03/25/fendi-black-2jours-grande-shopping-bag-product-1-18679366-1-477799868-normal.jpeg',
+// };
+
+const NewArrivals = ({ products }: IProductsListProps) => {
   return (
     <div className="flex flex-col gap-8">
       <div className="mt-16 flex w-full items-center justify-between">
@@ -28,9 +30,9 @@ const NewArrivals = () => {
       </div>
       <div className="mx-auto w-full pb-16">
         <ProductsSlider>
-          {[...new Array(10)].map((_, i) => (
+          {products.map((product, i) => (
             <SwiperSlide key={i}>
-              <ProductCard {...product1} />
+              <ProductCard {...product} />
             </SwiperSlide>
           ))}
         </ProductsSlider>

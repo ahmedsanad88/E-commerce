@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { FaThList } from 'react-icons/fa';
 
+import type { IProduct } from '@/global/interfaces/products/products';
 import Pagination from '@/ui/components/Pagination';
-import type { IProductCardProps } from '@/ui/components/ProductCard';
 import ProductCard from '@/ui/components/ProductCard';
 import WideProductCard from '@/ui/components/WideProductCard';
 
@@ -17,8 +17,8 @@ import WideProductCard from '@/ui/components/WideProductCard';
 //   discount: 20,
 // };
 
-interface IProductsListProps {
-  products: IProductCardProps[];
+export interface IProductsListProps {
+  products: IProduct[];
 }
 
 const ProductsList = ({ products }: IProductsListProps) => {

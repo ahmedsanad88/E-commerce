@@ -10,29 +10,36 @@ import cat6 from '@/public/assets/images/cat6.png';
 export const collections: {
   image: string | StaticImageData;
   alt: string;
+  path: string;
 }[] = [
   {
     alt: 'Personal Care',
     image: cat2,
+    path: 'fragrances',
   },
   {
     alt: 'Handbags',
     image: cat1,
+    path: 'handbags',
   },
   {
     alt: 'Wrist Watches',
     image: cat4,
+    path: 'watches',
   },
   {
-    alt: 'Sun Glasses',
+    alt: 'Skincare',
     image: cat3,
+    path: 'skincare',
   },
   {
     alt: 'Jewelry',
     image: cat5,
+    path: 'jewellery',
   },
   {
     alt: 'apparel',
     image: cat6,
+    path: 'apparels',
   },
 ];

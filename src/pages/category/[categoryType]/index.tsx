@@ -4,6 +4,7 @@ import type {
 } from 'next';
 import { useRouter } from 'next/router';
 
+import type { IProduct } from '@/global/interfaces/products/products';
 import { Meta } from '@/layouts/Meta';
 import category1 from '@/public/assets/images/category1.png';
 import { Main } from '@/templates/Main';
@@ -12,26 +13,6 @@ import SubBanner from '@/ui/components/SubBanner';
 import FilterOptions from '@/ui/sections/category-page/FilterOptions';
 import ProductsList from '@/ui/sections/category-page/ProductsList';
 
-export interface IProduct {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
-
-/**
- * 
- * {
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>
- */
 const Categories = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {

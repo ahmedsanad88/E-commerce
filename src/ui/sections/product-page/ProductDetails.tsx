@@ -1,8 +1,8 @@
-import type { StaticImageData } from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
 import { MdAddShoppingCart, MdOutlineFavoriteBorder } from 'react-icons/md';
 
+import type { IProduct } from '@/global/interfaces/products/products';
 import { addToCart } from '@/redux/slices/cart-slice/cartSlice';
 import { addToFavorite } from '@/redux/slices/fav-slice/favSlice';
 import { useDispatch } from '@/redux/store';
@@ -11,23 +11,16 @@ import RatingStar from '@/ui/components/RatingStar';
 
 import ProductCoupon from './ProductCoupon';
 
-interface IProductDetailsProps {
-  title: string;
-  subTitle: string;
-  stars: number;
-  price: number;
-  discount: number;
-  image: string | StaticImageData;
-}
-
 const ProductDetails = ({
+  id,
   title,
-  subTitle,
-  stars,
+  category,
+  rating,
   price,
-  discount,
-  image,
-}: IProductDetailsProps) => {
+  stock,
+  discountPercentage,
+  thumbnail,
+}: IProduct) => {
   // const { data }: { data: ICartSliceInitialState[] } = useSelector(
   //   (state: RootState) => state.cart
   // );
@@ -62,11 +55,11 @@ const ProductDetails = ({
   const addItem = () => {
     dispatch(
       addToCart({
-        id: title,
+        id,
         title,
-        subTitle,
+        subTitle: category,
         price,
-        image,
+        image: thumbnail,
         count: numOfUnits,
       })
     );
@@ -75,11 +68,11 @@ const ProductDetails = ({
   const addFavItem = () => {
     dispatch(
       addToFavorite({
-        id: title,
+        id,
         title,
-        subTitle,
+        subTitle: category,
         price,
-        image,
+        image: thumbnail,
       })
     );
   };
@@ -88,12 +81,19 @@ const ProductDetails = ({
     <div className="flex w-full flex-col gap-4">
       <div>
         <h2>{title}</h2>
-        <p>{subTitle}</p>
+        <p>{category}</p>
+        <p
+          className={`mt-4 w-fit rounded-md py-2 px-4 text-sm text-white ${
+            stock > 0 ? 'bg-green-700' : 'bg-red-700'
+          }`}
+        >
+          {stock > 0 ? `${stock} Remaining, Harry Up!` : 'Out Of Stock'}
+        </p>
       </div>
-      <RatingStar rate={stars} />
+      <RatingStar rate={rating} />
       <PriceDiscount
         price={price}
-        discount={discount}
+        discount={discountPercentage}
         display="flex-wrap"
         mainTextSize="text-[25px] md:text-[40px]"
         SubTextSize="text-[20px] md:text-[30px]"

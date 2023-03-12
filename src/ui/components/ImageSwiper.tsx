@@ -4,11 +4,11 @@ import { FreeMode, Thumbs } from 'swiper';
 import { Swiper as SWMain, SwiperSlide } from 'swiper/react';
 import type { Swiper } from 'swiper/types';
 
-import cat1 from '@/public/assets/images/cat1.png';
-import cat2 from '@/public/assets/images/cat2.png';
-import cat3 from '@/public/assets/images/cat3.png';
+interface ISwiperProps {
+  images: string[];
+}
 
-export default function ImageSwiper() {
+export default function ImageSwiper({ images }: ISwiperProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<Swiper | null>(null);
 
   return (
@@ -21,24 +21,19 @@ export default function ImageSwiper() {
         modules={[FreeMode, Thumbs]}
         className="mySwiper2"
       >
-        <SwiperSlide>
-          <Image src={cat1} alt="product" priority />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat2} alt="product" loading="lazy" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat3} alt="product" loading="lazy" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat1} alt="product" priority />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat2} alt="product" loading="lazy" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat3} alt="product" loading="lazy" />
-        </SwiperSlide>
+        {images.length &&
+          images.map((image, idx) => (
+            <SwiperSlide key={idx}>
+              <Image
+                src={image}
+                alt="product"
+                placeholder="blur"
+                blurDataURL={image}
+                width={600}
+                height={600}
+              />
+            </SwiperSlide>
+          ))}
       </SWMain>
       {/* 2nd Swiper */}
       <SWMain
@@ -50,24 +45,19 @@ export default function ImageSwiper() {
         modules={[FreeMode, Thumbs]}
         className="mySwiper3"
       >
-        <SwiperSlide>
-          <Image src={cat1} alt="product" priority />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat2} alt="product" priority />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat3} alt="product" priority />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat1} alt="product" priority />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat2} alt="product" priority />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={cat3} alt="product" priority />
-        </SwiperSlide>
+        {images.length &&
+          images.map((image, idx) => (
+            <SwiperSlide key={idx}>
+              <Image
+                src={image}
+                alt="product"
+                placeholder="blur"
+                blurDataURL={image}
+                width={75}
+                height={75}
+              />
+            </SwiperSlide>
+          ))}
       </SWMain>
     </div>
   );

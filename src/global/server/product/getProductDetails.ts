@@ -1,7 +1,7 @@
 import ApiClient from '@/global/utils/ApiClient';
 
-export const getCategoryData = async (category: string) => {
-  return ApiClient.get(`/category/${category}`)
+export const getProductDetails = async (productId: string) => {
+  return ApiClient.get(`/${productId}`)
     .then((data) => {
       return data.data;
     })

@@ -3,30 +3,13 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { MdAddShoppingCart, MdOutlineFavoriteBorder } from 'react-icons/md';
 
+import type { IProduct } from '@/global/interfaces/products/products';
 import { addToCart } from '@/redux/slices/cart-slice/cartSlice';
 import { addToFavorite } from '@/redux/slices/fav-slice/favSlice';
 import { useDispatch } from '@/redux/store';
 
 import PriceDiscount from './PriceDiscount';
 import RatingStar from './RatingStar';
-
-// export interface IProductCardProps {
-//   title: string;
-//   category: string;
-//   price: number;
-//   image: string;
-//   rating?: number;
-//   discount?: number;
-// }
-export interface IProductCardProps {
-  id: number;
-  title: string;
-  category: string;
-  price: number;
-  thumbnail: string;
-  rating?: number;
-  discountPercentage?: number;
-}
 
 const ProductCard = ({
   id,
@@ -36,7 +19,7 @@ const ProductCard = ({
   thumbnail,
   rating,
   discountPercentage,
-}: IProductCardProps) => {
+}: IProduct) => {
   const router = useRouter();
   const { categoryType } = router.query;
   const dispatch = useDispatch();
@@ -71,7 +54,7 @@ const ProductCard = ({
       className="group relative flex max-w-[450px] cursor-pointer flex-col gap-4 overflow-hidden lg:w-full"
       onClick={() =>
         router.push(
-          `/category/${categoryType || category.replaceAll(' ', '')}/${title}`
+          `/category/${categoryType || category.replaceAll(' ', '')}/${id}`
         )
       }
     >
