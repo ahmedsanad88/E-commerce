@@ -3,9 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { FaArrowCircleDown } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { HiOutlineMenuAlt1, HiOutlineShoppingBag } from 'react-icons/hi';
+import { IoClose } from 'react-icons/io5';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { RiUserLine } from 'react-icons/ri';
 
@@ -142,21 +142,40 @@ const Navbar = () => {
       </div>
       {/* mobile */}
       <div
-        className={`absolute left-[100px] bottom-[-12px] z-30 block h-fit w-fit cursor-pointer rounded-full bg-white transition-transform duration-200 xl:hidden ${
+        className={`absolute left-[100px] bottom-[-12px] z-30 block h-fit w-fit cursor-pointer rounded-full bg-white p-1 shadow-md transition-transform duration-200 xl:hidden ${
           showCategories ? 'rotate-180' : 'rotate-0'
         }`}
         onClick={() => setShowCategories((prev) => !prev)}
       >
-        <FaArrowCircleDown className="h-6 w-6 text-[#1B4B66]" />
+        {showCategories ? (
+          <IoClose className="h-6 w-6 text-[#1B4B66]" />
+        ) : (
+          <HiOutlineMenuAlt1 className="h-6 w-6 text-[#1B4B66]" />
+        )}
       </div>
       {/* Nav for small devices */}
       <nav
-        className={`absolute left-[100px] bottom-[-215px] z-20 block rounded-md bg-white shadow-md transition-transform duration-300 xl:hidden ${
+        className={`absolute bottom-[-275px] z-20 block w-[90%] rounded-md bg-white shadow-md transition-transform duration-300 xl:hidden ${
           showCategories
             ? 'translate-y-0 translate-x-0 scale-100'
-            : 'translate-y-[-100px] translate-x-[-40px] scale-0'
+            : 'translate-y-[-150px] translate-x-[-80px] scale-0'
         }`}
       >
+        <form className="relative my-2 h-11 w-full overflow-hidden rounded-md bg-gray-100 shadow">
+          <input
+            type="text"
+            placeholder="Search for products or brands"
+            className="h-full w-full rounded-md bg-transparent p-2 pl-10 focus:outline-[#FF8C4B]"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="absolute left-2 top-[50%] translate-y-[-50%] text-2xl"
+          >
+            <FiSearch />
+          </button>
+        </form>
         <ul className="flex flex-col">
           {HeadTags.map((tag, i) => (
             <Link
@@ -164,7 +183,7 @@ const Navbar = () => {
               className="border-none text-gray-700 hover:text-[#1B4B66]"
               key={i}
             >
-              <li className="under-line relative overflow-hidden py-2 px-4 hover:bg-gray-200">
+              <li className="under-line relative overflow-hidden py-2 px-4 hover:bg-gray-100">
                 {tag}
               </li>
             </Link>

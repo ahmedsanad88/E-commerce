@@ -55,7 +55,9 @@ const SearchCard = ({ id, title, category, thumbnail, price }: IProduct) => {
         />
       </div>
       <div className="flex flex-1 flex-col items-center gap-2 md:items-start">
-        <h2 className="text-xl font-semibold text-[#171520]">{title}</h2>
+        <h2 className="text-center text-xl font-semibold text-[#171520] md:text-left">
+          {title}
+        </h2>
         <p className="text-[#626262]">{category}</p>
         <p className="font-semibold">{`$ ${price.toFixed(3)}`}</p>
       </div>
