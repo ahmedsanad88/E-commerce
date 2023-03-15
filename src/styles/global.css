@@ -90,4 +90,19 @@ a:hover {
   @apply before:absolute before:left-0 before:bottom-0 before:-z-10 before:h-8 before:w-full before:rounded-tl-full before:rounded-br-full before:bg-gradient-to-t before:from-[#FF8C4B] before:to-transparent before:content-['']
 }
 
+.animated-bg {
+  @apply w-[2000px] h-full;
+  background-image: linear-gradient( 135deg, #FFE985 10%, #FA742B 100%);background-repeat: no-repeat;
+  animation: move-bg 2s infinite ease-in-out alternate-reverse; 
+}
+
+@keyframes move-bg {
+  from {
+    background-position: -500px 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
 @tailwind utilities;
