@@ -1,8 +1,11 @@
 import type { FormikHelpers } from 'formik';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import Lottie from 'lottie-react';
 import Link from 'next/link';
 import React from 'react';
 import * as Yup from 'yup';
+
+import login from '@/public/assets/json/login.json';
 
 interface Values {
   email: string;
@@ -15,13 +18,16 @@ const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Must provide your email address'),
-  passowrd: Yup.string().required('No password provided.'),
+  password: Yup.string().required('No password provided'),
 });
 
 const Login = () => {
   return (
-    <div className="relative flex w-[1000px] justify-end gap-4 overflow-hidden rounded-lg p-4 shadow-md">
+    <div className="relative flex w-full flex-col justify-end gap-4 overflow-hidden rounded-lg p-4 shadow-md md:w-[90%] md:flex-row xl:w-[1000px]">
       <div className="animated-bg absolute inset-0 left-[50%] top-[50%] z-0 translate-x-[-50%] translate-y-[-50%]"></div>
+      <div>
+        <Lottie animationData={login} loop={true} />
+      </div>
       <Formik
         initialValues={{
           email: '',
@@ -40,7 +46,10 @@ const Login = () => {
         }}
       >
         {({ errors, touched }) => (
-          <Form className="z-10 flex w-[80%] flex-col gap-1 rounded-lg bg-white p-4">
+          <Form className="z-10 flex w-full flex-col gap-1 rounded-lg bg-white p-4 md:w-[80%]">
+            <h1 className="text-center font-semibold capitalize">
+              Welcome Back!
+            </h1>
             <div className="relative flex w-full flex-col pb-5">
               <label
                 className={`font-medium capitalize text-[#171520] ${
@@ -103,7 +112,7 @@ const Login = () => {
                 Login
               </button>
               <Link href={'/auth/register'}>
-                <p>Create new account!</p>
+                <p className="text-sm">Create new account!</p>
               </Link>
             </div>
           </Form>

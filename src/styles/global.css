@@ -98,10 +98,10 @@ a:hover {
 
 @keyframes move-bg {
   from {
-    background-position: -500px 0;
+    background-position: -300px 0;
   }
   to {
-    background-position: 500px 0;
+    background-position: 300px 0;
   }
 }
 

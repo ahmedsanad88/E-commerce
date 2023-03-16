@@ -14,7 +14,7 @@ const login = () => {
         />
       }
     >
-      <div className="grid min-h-screen place-items-center">
+      <div className="mb-32 grid place-items-center">
         <Login />
       </div>
     </Main>

@@ -14,7 +14,7 @@ const register = () => {
         />
       }
     >
-      <div>
+      <div className="mb-32 grid place-items-center">
         <Register />
       </div>
     </Main>
