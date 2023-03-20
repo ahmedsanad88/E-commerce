@@ -12,12 +12,10 @@ import { AppConfig } from '@/utils/AppConfig';
 
 const footer1: string[] = [
   'skincare',
-  'Personal Care',
-  'Handbags',
-  'Apparels',
-  'Watches',
-  'Eye Wear',
-  'Jewellery',
+  'handbags',
+  'apparels',
+  'watches',
+  'jewellery',
 ];
 
 const footer2: string[] = ['contact us', 'about us', 'careers', 'press'];
@@ -38,12 +36,11 @@ const Footer = () => {
         <div className="flex flex-col items-start">
           <h2 className="mb-4 font-medium text-white">shop by category</h2>
           {footer1.map((item, i) => (
-            <p
-              key={i}
-              className="cursor-pointer text-[#B6B6B6] hover:text-gray-100 hover:underline"
-            >
-              {item}
-            </p>
+            <Link key={i} href={`/category/${item}`}>
+              <p className="cursor-pointer capitalize text-[#B6B6B6] hover:text-gray-100 hover:underline">
+                {item}
+              </p>
+            </Link>
           ))}
         </div>
         <div className="flex flex-col items-start">

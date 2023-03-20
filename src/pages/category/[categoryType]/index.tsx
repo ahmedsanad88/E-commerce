@@ -23,8 +23,8 @@ const Categories = ({
     <Main
       meta={
         <Meta
-          title="Categories"
-          description={`List of ${categoryType} category.`}
+          title={categoryType as string}
+          description={`Check our latest list of products for ${categoryType} category.`}
         />
       }
     >
@@ -65,12 +65,10 @@ export default Categories;
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { categoryType } = ctx.query;
-  if (!categoryType) {
-    return {
-      props: { data: [] },
-    };
-  }
-  const res = await fetch(`http://localhost:3000/api/category/${categoryType}`);
+
+  const res = await fetch(
+    `http://localhost:3000/api/category/${categoryType || 'handbags'}`
+  );
   const data: IProduct[] = await res.json();
 
   return {

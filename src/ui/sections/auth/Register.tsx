@@ -42,7 +42,7 @@ const RegisterSchema = Yup.object().shape({
     ),
   passwordConfirmation: Yup.string()
     .required('No password provided.')
-    .oneOf([Yup.ref('newPassword'), undefined], 'Passwords must match'),
+    .oneOf([Yup.ref('newPassword')], 'Passwords must match'),
 });
 
 const Register = () => {

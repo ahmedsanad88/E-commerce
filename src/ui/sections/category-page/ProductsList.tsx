@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { FaThList } from 'react-icons/fa';
 
 import type { IProduct } from '@/global/interfaces/products/products';
+import Loader from '@/ui/components/Loader';
 import Pagination from '@/ui/components/Pagination';
 import ProductCard from '@/ui/components/ProductCard';
 import WideProductCard from '@/ui/components/WideProductCard';
@@ -21,8 +23,70 @@ export interface IProductsListProps {
   products: IProduct[];
 }
 
+type SortOptions = 'lowToHigh' | 'highToLow' | 'rate' | 'discount' | '';
+
 const ProductsList = ({ products }: IProductsListProps) => {
   const [isGridList, setIsGridList] = useState(true);
+  const [sortOption, setSortOption] = useState<SortOptions>('');
+  const [sortedData, setSortedData] = useState<IProduct[]>(() => products);
+  const [isChangeSort, setIsChangeSort] = useState(false);
+  const dynamicRoute = useRouter().asPath;
+
+  useEffect(() => {
+    let sub = true;
+    if (sub) {
+      setSortedData(products);
+    }
+
+    return () => {
+      sub = false;
+    };
+  }, [dynamicRoute]);
+
+  useEffect(() => {
+    let sub = true;
+    if (sub && sortOption) {
+      setIsChangeSort(true);
+      switch (sortOption) {
+        case 'lowToHigh':
+          setSortedData((prev) =>
+            [...prev].sort((a: IProduct, b: IProduct) => a.price - b.price)
+          );
+          break;
+        case 'highToLow':
+          setSortedData((prev) =>
+            [...prev].sort((a: IProduct, b: IProduct) => b.price - a.price)
+          );
+          break;
+        case 'discount':
+          setSortedData((prev) =>
+            [...prev].sort(
+              (a: IProduct, b: IProduct) =>
+                b.discountPercentage - a.discountPercentage
+            )
+          );
+          break;
+        case 'rate':
+          setSortedData((prev) =>
+            [...prev].sort((a: IProduct, b: IProduct) => b.rating - a.rating)
+          );
+          break;
+        default:
+          setSortedData(products);
+          break;
+      }
+    }
+
+    return () => {
+      sub = false;
+    };
+  }, [sortOption]);
+
+  const handleSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOption(event.target.value as SortOptions);
+  };
+
+  // console.log(sortedData);
 
   return (
     <div className="flex w-full flex-col gap-6">
@@ -64,8 +128,11 @@ const ProductsList = ({ products }: IProductsListProps) => {
             name="sorted"
             id="sorted"
             className="ml-2 h-[52px] rounded bg-[#f1f1f1] pl-2"
+            onChange={(e) => handleSort(e)}
           >
-            <option value="">Sort Your data</option>
+            <option value="" disabled={isChangeSort}>
+              Sort Your data
+            </option>
             <option value="lowToHigh">Price: Low to High</option>
             <option value="highToLow">Price: High to Low</option>
             <option value="rate">Rate: Higher</option>
@@ -82,14 +149,17 @@ const ProductsList = ({ products }: IProductsListProps) => {
             : 'grid-cols-1 gap-y-8'
         }`}
       >
-        {products.length &&
-          products.map((product, i) =>
+        {sortedData?.length ? (
+          sortedData.map((product, i) =>
             isGridList ? (
               <ProductCard {...product} key={i} />
             ) : (
               <WideProductCard {...product} key={i} />
             )
-          )}
+          )
+        ) : (
+          <Loader />
+        )}
       </div>
 
       <Pagination data={[...new Array(5)]} />

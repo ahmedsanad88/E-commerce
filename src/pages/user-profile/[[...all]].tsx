@@ -27,7 +27,10 @@ const UserProfile = () => {
   return (
     <Main
       meta={
-        <Meta title="User Profile" description="Edit and Update your profile" />
+        <Meta
+          title="User Profile"
+          description="Edit and check your profile, control all process across you data."
+        />
       }
     >
       <div className="min-h-screen">
