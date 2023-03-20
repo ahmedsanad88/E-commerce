@@ -71,7 +71,9 @@ export async function getServerSideProps() {
   const arrOfCategories = ['fragrances', 'tops', 'womens-shoes'];
   const randomCate = arrOfCategories[Math.round(Math.random() * 2)];
 
-  const res = await fetch(`${process.env.BASE_URL}/api/category/${randomCate}`);
+  const res = await fetch(
+    `${process.env.BASE_URL_LOCAL}/api/category/${randomCate}`
+  );
   const data: IProduct[] = await res.json();
 
   return {

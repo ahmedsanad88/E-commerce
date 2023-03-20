@@ -78,7 +78,9 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
       notFound: true,
     };
   }
-  const res = await fetch(`${process.env.BASE_URL}/api/product/${productid}`);
+  const res = await fetch(
+    `${process.env.BASE_URL_LOCAL}/api/product/${productid}`
+  );
   const data: IProduct = await res.json();
 
   return {

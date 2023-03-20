@@ -67,7 +67,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { categoryType } = ctx.query;
 
   const res = await fetch(
-    `${process.env.BASE_URL}/api/category/${categoryType || 'handbags'}`
+    `${process.env.BASE_URL_LOCAL}/api/category/${categoryType || 'handbags'}`
   );
   const data: IProduct[] = await res.json();
 
