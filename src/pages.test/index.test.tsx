@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
+import type { IProduct } from '@/global/interfaces/products/products';
 import Index from '@/pages/index';
 
 // The easiest solution to mock `next/router`: https://github.com/vercel/next.js/issues/7479
@@ -8,7 +9,8 @@ import Index from '@/pages/index';
 describe('Index page', () => {
   describe('Render method', () => {
     it('should have h1 tag', () => {
-      render(<Index />);
+      const data: IProduct[] = [];
+      render(<Index data={data} />);
 
       const heading = screen.getByRole('heading', {
         name: /Boilerplate code/,

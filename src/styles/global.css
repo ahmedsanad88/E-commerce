@@ -104,5 +104,7 @@ a:hover {
     background-position: 300px 0;
   }
 }
+.mySwiper {
+}
 
 @tailwind utilities;
