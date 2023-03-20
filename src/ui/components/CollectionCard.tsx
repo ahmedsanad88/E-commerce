@@ -22,8 +22,10 @@ const CollectionCard = ({ image, alt, path }: ICollectionCardProps) => {
             height={280}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-white/70 to-transparent"></div>
-          <div className="absolute bottom-2 left-2">
-            <p className="text-3xl font-bold text-[#1B4B66]">{alt}</p>
+          <div className="absolute bottom-2 left-8 xs:left-2">
+            <p className="text-xl font-bold text-[#1B4B66] xs:text-3xl">
+              {alt}
+            </p>
           </div>
         </div>
       </div>
