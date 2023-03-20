@@ -4,6 +4,7 @@ import type {
 } from 'next';
 
 import type { IProduct } from '@/global/interfaces/products/products';
+import ApiClientLocal from '@/global/utils/ApiClientLocal';
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 import ImageSwiper from '@/ui/components/ImageSwiper';
@@ -78,10 +79,9 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
       notFound: true,
     };
   }
-  const res = await fetch(
-    `${process.env.BASE_URL_LOCAL}/api/product/${productid}`
-  );
-  const data: IProduct = await res.json();
+
+  const res = await ApiClientLocal.get(`/api/product/${productid}`);
+  const data: IProduct = await res.data;
 
   return {
     props: { data },

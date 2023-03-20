@@ -5,6 +5,7 @@ import type {
 import { useRouter } from 'next/router';
 
 import type { IProduct } from '@/global/interfaces/products/products';
+import ApiClientLocal from '@/global/utils/ApiClientLocal';
 import { Meta } from '@/layouts/Meta';
 import category1 from '@/public/assets/images/category1.png';
 import { Main } from '@/templates/Main';
@@ -66,10 +67,10 @@ export default Categories;
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { categoryType } = ctx.query;
 
-  const res = await fetch(
-    `${process.env.BASE_URL_LOCAL}/api/category/${categoryType || 'handbags'}`
+  const res = await ApiClientLocal.get(
+    `/api/category/${categoryType || 'handbags'}`
   );
-  const data: IProduct[] = await res.json();
+  const data: IProduct[] = await res.data;
 
   return {
     props: { data },

@@ -3,6 +3,7 @@
 import type { InferGetServerSidePropsType } from 'next';
 
 import type { IProduct } from '@/global/interfaces/products/products';
+import ApiClientLocal from '@/global/utils/ApiClientLocal';
 import { Meta } from '@/layouts/Meta';
 import cream from '@/public/assets/images/cream.png';
 import girl from '@/public/assets/images/girl.png';
@@ -71,10 +72,8 @@ export async function getServerSideProps() {
   const arrOfCategories = ['fragrances', 'tops', 'womens-shoes'];
   const randomCate = arrOfCategories[Math.round(Math.random() * 2)];
 
-  const res = await fetch(
-    `${process.env.BASE_URL_LOCAL}/api/category/${randomCate}`
-  );
-  const data: IProduct[] = await res.json();
+  const res = await ApiClientLocal.get(`/api/category/${randomCate}`);
+  const data: IProduct[] = await res.data;
 
   return {
     props: { data },
