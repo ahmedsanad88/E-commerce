@@ -14,7 +14,7 @@ const Favorite = () => {
   return (
     <div>
       {data.length > 0 ? (
-        <div>
+        <div className="max-h-[350px] overflow-y-auto overscroll-none md:max-h-[600px] xl:max-h-[700px]">
           {data.map((item, idx) => (
             <FavTemplateCard {...item} key={idx} />
           ))}

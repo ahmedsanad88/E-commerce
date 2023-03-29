@@ -51,7 +51,7 @@ const WideProductCard = ({
 
   return (
     <div
-      className="relative flex w-full cursor-pointer flex-col items-center gap-4 overflow-hidden bg-gray-50 lg:flex-row"
+      className="relative flex w-full cursor-pointer flex-col items-center gap-4 overflow-hidden bg-gray-50 p-2 lg:flex-row"
       onClick={() =>
         router.push(
           `/category/${categoryType || category.replaceAll(' ', '')}/${title}`

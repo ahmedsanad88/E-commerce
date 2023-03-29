@@ -23,7 +23,7 @@ const RatingStar = ({ rate }: IRatingStarProps) => {
           }`}
         />
       ))}
-      <p className="ml-4 text-sm text-gray-400">(45) Ratings</p>
+      <p className="ml-4 text-sm text-indigo-700">(45) Ratings</p>
     </div>
   );
 };

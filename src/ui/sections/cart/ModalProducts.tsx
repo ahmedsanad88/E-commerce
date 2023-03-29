@@ -32,9 +32,11 @@ const ModalProducts = () => {
     <div>
       {data.length > 0 ? (
         <div>
-          {data.map((item, idx) => (
-            <CartProductTemplate {...item} key={idx} />
-          ))}
+          <div className="max-h-[120px] w-full overflow-y-auto py-2 xxs:max-h-[160px] xs:max-h-[200px] lg:max-h-[500px] 2xl:max-h-[800px]">
+            {data.map((item, idx) => (
+              <CartProductTemplate {...item} key={idx} />
+            ))}
+          </div>
           <div className="my-6 flex flex-col gap-4">
             <div className="flex w-full justify-between">
               <p>Subtotal:</p>

@@ -20,7 +20,7 @@ const Modal = ({
       className={`fixed inset-0 z-50 flex items-center justify-center bg-black/40`}
       onClick={() => close(false)}
     >
-      <div className="relative h-full w-full">
+      <div className="relative h-full w-full overscroll-none">
         <div
           className={`absolute min-h-[200px] w-[90%] rounded-lg bg-white p-6 shadow-xl sm:w-fit ${position}`}
           onClick={(e) => {
@@ -30,7 +30,7 @@ const Modal = ({
         >
           <button
             onClick={() => close(false)}
-            className="mb-10 flex items-center gap-4 font-medium"
+            className="mb-2 flex items-center gap-4 font-medium lg:mb-10"
           >
             <IoArrowBackOutline className="text-xl" />
             <p>Back</p>

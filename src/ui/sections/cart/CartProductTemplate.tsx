@@ -35,7 +35,7 @@ const CartProductTemplate = ({
   };
 
   return (
-    <div className="flex items-center gap-4 border-b-2 border-black/10 pb-10">
+    <div className="flex w-full items-center justify-between gap-4 border-b-2 border-black/10 pb-10">
       <div className="h-[100px] w-[100px]">
         <Image
           src={image}
@@ -60,7 +60,7 @@ const CartProductTemplate = ({
             }}
           />
         </div>
-        <div className="flex w-full items-center justify-between gap-2">
+        <div className="flex w-full items-center justify-end gap-2">
           <div className="flex items-center gap-2 rounded border-2 border-[#1B4B66] p-2 text-[#1B4B66]">
             <HiMinus
               onClick={() => handleCount(false)}

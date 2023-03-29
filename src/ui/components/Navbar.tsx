@@ -53,7 +53,10 @@ const Navbar = () => {
       } else if (data.length === 0) {
         setCartCount(0);
       } else {
-        data.map((item) => setCartCount((prev) => prev + item.count));
+        let sumOfProducts: number = 0;
+        // eslint-disable-next-line no-return-assign
+        data.forEach((item) => (sumOfProducts += item.count));
+        setCartCount(sumOfProducts);
       }
     }
   }, [data]);
@@ -108,6 +111,7 @@ const Navbar = () => {
         <button
           type="submit"
           className="absolute left-2 top-[50%] translate-y-[-50%] text-2xl"
+          aria-label="Search for products"
         >
           <FiSearch />
         </button>
@@ -121,7 +125,10 @@ const Navbar = () => {
           <div className="absolute top-0 -right-1 h-3 w-3 animate-ping rounded-full bg-[#FF8C4B]"></div>
           <div className="absolute top-0 -right-1 h-3 w-3 rounded-full bg-[#FF8C4B]"></div>
         </div>
-        <Link href={`/user-profile/personal-information`}>
+        <Link
+          href={`/user-profile/personal-information`}
+          aria-label="user account"
+        >
           <RiUserLine className="h-6 w-6 cursor-pointer text-[#1B4B66]" />
         </Link>
         <div
@@ -172,6 +179,7 @@ const Navbar = () => {
           <button
             type="submit"
             className="absolute left-2 top-[50%] translate-y-[-50%] text-2xl"
+            aria-label="Search for products"
           >
             <FiSearch />
           </button>
@@ -194,7 +202,7 @@ const Navbar = () => {
       <Modal
         shown={showModal}
         close={setShowModal}
-        position="right-2 top-24 sm:top-20"
+        position="right-2 top-2 sm:top-20 xl:top-24"
       >
         <ModalProducts />
       </Modal>
@@ -202,7 +210,7 @@ const Navbar = () => {
       <Modal
         shown={showFavModel}
         close={setShowFavModel}
-        position="right-2 top-24 sm:top-20"
+        position="right-2 top-2 sm:top-20 xl:top-24"
       >
         <Favorite />
       </Modal>
