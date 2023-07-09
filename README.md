@@ -1,4 +1,4 @@
-# E-Commerce using NextJS, Typescript and TailwindCSS 📦
+# E-Commerce using NextJS, Typescript and TailwindCSS (nextJS-v12)📦
 
 
 ![GitHub](https://img.shields.io/github/license/ahmedsanad88/E-commerce)
